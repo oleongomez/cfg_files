@@ -14,7 +14,7 @@ set shiftwidth=4           " Number of spaces to use for autoindent.
 
 set backspace=2            " Fix backspace behavior on most terminals.
 
-colorscheme murphy         " Change a colorscheme.
+colorscheme delek         " Change a colorscheme.
 set undofile
 if !isdirectory(expand("$HOME/.vim/undodir"))
     call mkdir(expand("$HOME/.vim/undodir"),"p")
@@ -27,6 +27,9 @@ noremap <c-j> <c-w><c-j>
 noremap <c-k> <c-w><c-k>
 noremap <c-l> <c-w><c-l>
 nmap ; :
+let mapleader = "\<space>"
+noremap <leader>w :w<cr>
+noremap <leader>n :NERDTreeToggle<cr>
 set foldmethod=indent      "Folding python code
 set wildmenu               "Enable wildmenu
 set wildmode=list:longest,full
@@ -34,3 +37,19 @@ set wildmode=list:longest,full
 let NERDTreeHijackNetrw = 0      "Avoid NERDTree replacing Netrw
 set number
 set hlsearch
+"Install vim-plug if it is not already installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.github.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+"Manage plugins with vim-plug
+call plug#begin()
+
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-vinegar'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mileszs/ack.vim'
+Plug 'easymotion/vim-easymotion'
+
+call plug#end()
