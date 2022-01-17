@@ -1,4 +1,3 @@
-
 " => Chapter 1: Getting Started --------------------------------------- {{{
 
 " Basic Python-friendly Vim configuration. Colorscheme is changed from
@@ -30,6 +29,7 @@ nmap ; :
 let mapleader = "\<space>"
 noremap <leader>w :w<cr>
 noremap <leader>n :NERDTreeToggle<cr>
+noremap <leader>q :q<cr>
 set foldmethod=indent      "Folding python code
 set wildmenu               "Enable wildmenu
 set wildmode=list:longest,full
@@ -43,6 +43,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.github.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+call plug#begin('~/.vim/plugged')
 "Manage plugins with vim-plug
 call plug#begin()
 
