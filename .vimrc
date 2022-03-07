@@ -31,6 +31,7 @@ noremap <leader>w :w<cr>
 noremap <leader>q :q<cr>
 noremap <leader>n :NERDTreeToggle<cr>
 noremap <leader>] :YcmCompleter GoTo<cr>
+noremap <F3> :set hlsearch!<cr>
 set foldmethod=indent      "Folding python code
 set wildmenu               "Enable wildmenu
 set wildmode=list:longest,full
