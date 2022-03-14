@@ -68,8 +68,9 @@ call plug#end()
 let g:ale_set_quickfix = 1
 let g:ale_python_autopep8_executable = '/home/oscar/.pyenv/shims/autopep8'
 let g:ale_python_pylint_executable = '/home/oscar/.pyenv/shims/pylint'
+let g:ale_python_mypy_executable = '/home/oscar/.pyenv/shims/mypy'
 let g:ale_fixers = {'python':['autopep8']}
-let g:ale_linters = {'python':['pylint']} 
+let g:ale_linters = {'python':['pylint', 'mypy']} 
 
 "Move lines mappings"
 nnoremap <leader>j :m .+1<CR>==
