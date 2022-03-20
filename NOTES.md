@@ -60,10 +60,26 @@ t - HTML tags
 "' - quotes
 
 **Marks**
-????
+ma -  create a mark named a only in the current file.
+'a - go back to the mark a in this file
+
+mA - create a mark in the file but can return to it form any other file
+'A - go back to the A mark on other file
+
+**Navigation**
+zz - centers the current line in the screen.
+
+**Operations**
+
+dt<char> - delete until char exclusive
+df<char> - delete until you find a char inclusive
+di'
+di(
+di{
+J - join current line with next, remove leading spaces
+gJ - join current line with next, do not remove leading spaces
 
 ###Resources
 https://takac.github.io/2013/01/30/vim-grammar/
-
 
 https://github.com/vim/vim/issues/3629#issuecomment-440845680https://github.com/vim/vim/issues/3629#issuecomment-440845680
