@@ -10,7 +10,7 @@ set autoindent             " Respect indentation when starting a new line.
 set expandtab              " Expand tabs to spaces. Essential in Python.
 set tabstop=4              " Number of spaces tab is counted for.
 set shiftwidth=4           " Number of spaces to use for autoindent.
-
+set autoread               " Reload the files when changed outside vim
 set backspace=2            " Fix backspace behavior on most terminals.
 
 colorscheme molokai          " Change a colorscheme.
@@ -32,6 +32,7 @@ noremap <leader>q :q<cr>
 noremap <leader>n :NERDTreeToggle<cr>
 noremap <leader>] :YcmCompleter GoTo<cr>
 noremap <F3> :set hlsearch!<cr>
+:nnoremap <F2> :buffers<CR>:buffer<Space>
 set foldmethod=indent      "Folding python code
 set wildmenu               "Enable wildmenu
 set wildmode=list:longest,full
@@ -61,8 +62,10 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'dense-analysis/ale'
 Plug 'puremourning/vimspector'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/ScrollColors'
 Plug 'flazz/vim-colorschemes'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 let g:ale_set_quickfix = 1
@@ -70,7 +73,7 @@ let g:ale_python_autopep8_executable = '/home/oscar/.pyenv/shims/autopep8'
 let g:ale_python_pylint_executable = '/home/oscar/.pyenv/shims/pylint'
 let g:ale_python_mypy_executable = '/home/oscar/.pyenv/shims/mypy'
 let g:ale_fixers = {'python':['autopep8']}
-let g:ale_linters = {'python':['pylint', 'mypy']} 
+let g:ale_linters = {'python':['pylint', 'mypy'], 'c++':['clang']} 
 
 "Move lines mappings"
 nnoremap <leader>j :m .+1<CR>==
@@ -79,3 +82,7 @@ inoremap <leader>j <Esc>:m .+1<CR>==gi
 inoremap <leader>k <Esc>:m .-2<CR>==gi
 vnoremap <leader>j :m '>+1<CR>gv=gv
 vnoremap <leader>k :m '<-2<CR>gv=gv
+
+"Ctrlp mappings
+nnoremap <leader>s  :CtrlP .<CR><c-d>
+" let g:airline#extensions#tabline#enabled = 1
