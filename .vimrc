@@ -13,7 +13,6 @@ set shiftwidth=4           " Number of spaces to use for autoindent.
 set autoread               " Reload the files when changed outside vim
 set backspace=2            " Fix backspace behavior on most terminals.
 
-colorscheme molokai_dark        " Change a colorscheme.
 set undofile
 if !isdirectory(expand("$HOME/.vim/undodir"))
     call mkdir(expand("$HOME/.vim/undodir"),"p")
@@ -76,6 +75,9 @@ let g:ale_python_mypy_executable = '/home/oscar/.pyenv/shims/mypy'
 let g:ale_fixers = {'python':['autopep8']}
 let g:ale_linters = {'python':['pylint', 'mypy'], 'c++':['clang']} 
 
+
+colorscheme molokai_dark        " Change a colorscheme.
+
 "Move lines mappings"
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
@@ -86,7 +88,7 @@ vnoremap <leader>k :m '<-2<CR>gv=gv
 
 "Ctrlp mappings
 nnoremap <leader>s  :CtrlP .<CR><c-d>
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 " Search and replace visually selected text
 vnoremap <c-f> y<ESC>/<c-r>"<CR>
 set redrawtime=10000
