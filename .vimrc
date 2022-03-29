@@ -13,7 +13,7 @@ set shiftwidth=4           " Number of spaces to use for autoindent.
 set autoread               " Reload the files when changed outside vim
 set backspace=2            " Fix backspace behavior on most terminals.
 
-colorscheme molokai          " Change a colorscheme.
+colorscheme molokai_dark        " Change a colorscheme.
 set undofile
 if !isdirectory(expand("$HOME/.vim/undodir"))
     call mkdir(expand("$HOME/.vim/undodir"),"p")
@@ -33,13 +33,14 @@ noremap <leader>n :NERDTreeToggle<cr>
 noremap <leader>] :YcmCompleter GoTo<cr>
 noremap <F3> :set hlsearch!<cr>
 :nnoremap <F2> :buffers<CR>:buffer<Space>
-set foldmethod=indent      "Folding python code
+"set foldmethod=indent      "Folding python code
 set wildmenu               "Enable wildmenu
 set wildmode=list:longest,full
 "autocmd VimEnter * NERDTree "Enable NERDTree on Vin startup
 let NERDTreeHijackNetrw = 0      "Avoid NERDTree replacing Netrw
 set number
 set hlsearch
+set tags=./tags;/
 "Install vim-plug if it is not already installed
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -53,19 +54,19 @@ call plug#begin()
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-vinegar'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mileszs/ack.vim'
-Plug 'easymotion/vim-easymotion'
+"Plug 'mileszs/ack.vim'
+"Plug 'easymotion/vim-easymotion'
 Plug 'tell-k/vim-autopep8'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 Plug 'ycm-core/YouCompleteMe', {'do': './install.py'}
-Plug 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-navigator'
 Plug 'dense-analysis/ale'
-Plug 'puremourning/vimspector'
+"Plug 'puremourning/vimspector'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/ScrollColors'
 Plug 'flazz/vim-colorschemes'
-Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-surround'
 
 call plug#end()
 let g:ale_set_quickfix = 1
@@ -78,11 +79,14 @@ let g:ale_linters = {'python':['pylint', 'mypy'], 'c++':['clang']}
 "Move lines mappings"
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
-inoremap <leader>j <Esc>:m .+1<CR>==gi
-inoremap <leader>k <Esc>:m .-2<CR>==gi
+"inoremap <leader>j <Esc>:m .+1<CR>==gi
+"inoremap <leader>k <Esc>:m .-2<CR>==gi
 vnoremap <leader>j :m '>+1<CR>gv=gv
 vnoremap <leader>k :m '<-2<CR>gv=gv
 
 "Ctrlp mappings
 nnoremap <leader>s  :CtrlP .<CR><c-d>
 " let g:airline#extensions#tabline#enabled = 1
+" Search and replace visually selected text
+vnoremap <c-f> y<ESC>/<c-r>"<CR>
+set redrawtime=10000
