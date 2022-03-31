@@ -89,6 +89,9 @@ vnoremap <leader>k :m '<-2<CR>gv=gv
 "Ctrlp mappings
 nnoremap <leader>s  :CtrlP .<CR><c-d>
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_symbols = {}
+let g:airline_symbols.colnr = '  ℅: '
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " Search and replace visually selected text
 vnoremap <c-f> y<ESC>/<c-r>"<CR>
 set redrawtime=10000
