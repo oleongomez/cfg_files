@@ -72,9 +72,10 @@ let g:ale_set_quickfix = 1
 let g:ale_python_autopep8_executable = '/home/oscar/.pyenv/shims/autopep8'
 let g:ale_python_pylint_executable = '/home/oscar/.pyenv/shims/pylint'
 let g:ale_python_mypy_executable = '/home/oscar/.pyenv/shims/mypy'
-let g:ale_fixers = {'python':['autopep8']}
-let g:ale_linters = {'python':['pylint', 'mypy'], 'c++':['clang']} 
-
+let g:ale_fixers = {'python':['autopep8'], 'javascript':['prettier', 'eslint'], 'css':['prettier']}
+let g:ale_linters = {'python':['pylint', 'mypy'], 'c++':['clang'], 'javascript':['prettier', 'eslint'], 'css':['prettier']} 
+let g:ale_linters_explicit = 1
+let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
 
 colorscheme molokai_dark        " Change a colorscheme.
 
