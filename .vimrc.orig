@@ -13,6 +13,10 @@ set shiftwidth=4           " Number of spaces to use for autoindent.
 set autoread               " Reload the files when changed outside vim
 set backspace=2            " Fix backspace behavior on most terminals.
 
+<<<<<<< HEAD
+=======
+colorscheme molokai_dark          " Change a colorscheme.
+>>>>>>> 2e91f0b (Getting more things locally for rust)
 set undofile
 if !isdirectory(expand("$HOME/.vim/undodir"))
     call mkdir(expand("$HOME/.vim/undodir"),"p")
@@ -54,7 +58,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-vinegar'
 Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'mileszs/ack.vim'
-Plug 'easymotion/vim-easymotion'
+"Plug 'easymotion/vim-easymotion'
 Plug 'tell-k/vim-autopep8'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 Plug 'ycm-core/YouCompleteMe', {'do': './install.py'}
@@ -65,20 +69,18 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/ScrollColors'
 Plug 'flazz/vim-colorschemes'
-Plug 'tpope/vim-surround'
+<<<<<<< HEAD
+"Plug 'tpope/vim-surround'
+=======
 Plug 'rust-lang/rust.vim'
-Plug 'jiangmiao/auto-pairs'
+>>>>>>> 2e91f0b (Getting more things locally for rust)
 
 call plug#end()
-" As-you-type autocomplete
-set completeopt=menu,menuone,preview,noselect,noinsert
-let g:ale_completion_enabled = 1
-
 let g:ale_set_quickfix = 1
 let g:ale_python_autopep8_executable = '/home/oscar/.pyenv/shims/autopep8'
 let g:ale_python_pylint_executable = '/home/oscar/.pyenv/shims/pylint'
 let g:ale_python_mypy_executable = '/home/oscar/.pyenv/shims/mypy'
-let g:ale_fixers = {'python':['autopep8'], 'javascript':['prettier', 'eslint'], 'css':['prettier'], 'rust': ['rustfmt', 'trim_whitespace', 'remove_trailing_lines']}
+let g:ale_fixers = {'python':['autopep8'], 'javascript':['prettier', 'eslint'], 'css':['prettier']}
 let g:ale_linters = {'python':['pylint', 'mypy'], 'c++':['clang'], 'javascript':['prettier', 'eslint'], 'css':['prettier']} 
 let g:ale_linters_explicit = 1
 let g:ale_javascript_prettier_options = '--single-quote --trailing-comma all'
