@@ -31,6 +31,7 @@ noremap <leader>q :q<cr>
 noremap <leader>n :NERDTreeToggle<cr>
 noremap <leader>] :YcmCompleter GoTo<cr>
 noremap <F3> :set hlsearch!<cr>
+" Can we do this to be open on a quicklist and chosen with arrows?
 :nnoremap <F2> :buffers<CR>:buffer<Space>
 "set foldmethod=indent      "Folding python code
 set wildmenu               "Enable wildmenu
@@ -60,7 +61,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 Plug 'ycm-core/YouCompleteMe', {'do': './install.py'}
 "Plug 'christoomey/vim-tmux-navigator'
 Plug 'dense-analysis/ale'
-"Plug 'puremourning/vimspector'
+Plug 'puremourning/vimspector'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/ScrollColors'
@@ -68,6 +69,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-surround'
 Plug 'rust-lang/rust.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'janko-m/vim-test'
 
 call plug#end()
 " As-you-type autocomplete
