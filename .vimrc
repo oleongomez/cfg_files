@@ -68,8 +68,9 @@ Plug 'vim-scripts/ScrollColors'
 Plug 'flazz/vim-colorschemes'
 Plug 'tpope/vim-surround'
 Plug 'rust-lang/rust.vim'
+Plug 'sagi-z/vimspectorpy', { 'do': { -> vimspectorpy#update() } }
 Plug 'jiangmiao/auto-pairs'
-Plug 'janko-m/vim-test'
+Plug 'vim-test/vim-test'
 
 call plug#end()
 " As-you-type autocomplete
@@ -104,3 +105,4 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " Search and replace visually selected text
 vnoremap <c-f> y<ESC>/<c-r>"<CR>
 set redrawtime=10000
+packadd! vimspector
