@@ -71,6 +71,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'sagi-z/vimspectorpy', { 'do': { -> vimspectorpy#update() } }
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-test/vim-test'
+Plug 'oleongomez/vim-commenter'
 
 call plug#end()
 " As-you-type autocomplete
