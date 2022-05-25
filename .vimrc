@@ -12,6 +12,7 @@ set tabstop=4              " Number of spaces tab is counted for.
 set shiftwidth=4           " Number of spaces to use for autoindent.
 set autoread               " Reload the files when changed outside vim
 set backspace=2            " Fix backspace behavior on most terminals.
+set spell                  " Set spellcheck
 
 set undofile
 if !isdirectory(expand("$HOME/.vim/undodir"))
@@ -72,6 +73,10 @@ Plug 'sagi-z/vimspectorpy', { 'do': { -> vimspectorpy#update() } }
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-test/vim-test'
 Plug 'oleongomez/vim-commenter'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'jparise/vim-graphql'
 
 call plug#end()
 " As-you-type autocomplete
