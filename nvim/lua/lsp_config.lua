@@ -1,6 +1,5 @@
 local lsp = require('lspconfig')
 local cmp = require('cmp')
-
   cmp.setup({
     snippet = {
       -- REQUIRED - you must specify a snippet engine
@@ -54,9 +53,9 @@ local cmp = require('cmp')
     })
   })
 
-  -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+-- Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
@@ -98,7 +97,12 @@ lsp.pylsp.setup{on_attach=custom_attach,
     settings = {
         pylsp = {
             plugins = {
-                pycodestyle = {maxLineLength=100}
+                autopep8 = {enabled = false},
+                pycodestyle = {maxLineLength=100},
+                pylint = {enabled = true},
+                pylsp_mypy = {enabled = true, live_mode = true, strict = true},
+                yapf = {enabled = true}
+
             }
         }
     }

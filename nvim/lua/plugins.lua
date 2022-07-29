@@ -34,63 +34,32 @@ function M.setup()
 
   -- Plugins
   local function plugins(use)
-    use { "wbthomason/packer.nvim" }
-
-    -- Colorscheme
-    use {
-      "sainnhe/everforest",
-      config = function()
-        vim.cmd "colorscheme everforest"
-      end,
-    }
-
     -- LSP
 local use = require('packer').use
 require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
   use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
-end)
-
-use {
-  'kyazdani42/nvim-tree.lua',
+  use { 'ctrlpvim/ctrlp.vim' }
+  use { 'oleongomez/vim-commenter' }
+  use { 'tpope/vim-surround' }
+  use { 'hrsh7th/cmp-nvim-lsp' }
+  use { 'hrsh7th/cmp-buffer' }
+  use { 'hrsh7th/cmp-path' }
+  use { 'hrsh7th/cmp-cmdline' }
+  use { 'hrsh7th/nvim-cmp' }
+  use { 'hrsh7th/cmp-vsnip' }
+  use { 'hrsh7th/vim-vsnip' }
+  use {'itchyny/lightline.vim'}
+  use {'nvim-treesitter/nvim-treesitter', run = function() require('nvim-treesitter.install').update({ with_sync = true }) end}
+  use { "sainnhe/everforest", config = function() vim.cmd "colorscheme everforest" end }
+  use { 'kyazdani42/nvim-tree.lua',
   requires = {
     'kyazdani42/nvim-web-devicons', -- optional, for file icons
   },
   tag = 'nightly' -- optional, updated every week. (see issue #1193)
 }
-
-use {
-    'ctrlpvim/ctrlp.vim'
-}
-use {
-    'oleongomez/vim-commenter'
-}
-use {
-    'tpope/vim-surround'
-}
-use {
-    'hrsh7th/cmp-nvim-lsp'
-}
-use {
-    'hrsh7th/cmp-buffer'
-}
-use {
-    'hrsh7th/cmp-path'
-}
-use {
-    'hrsh7th/cmp-cmdline'
-}
-use {
-    'hrsh7th/nvim-cmp'
-}
-use {
-    'hrsh7th/cmp-vsnip'
-}
-use {
-    'hrsh7th/vim-vsnip'
-}
-
-use {'itchyny/lightline.vim'}
+use {'tell-k/vim-autopep8'}
+end)
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"
