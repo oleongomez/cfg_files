@@ -8,8 +8,8 @@ local cmp = require('cmp')
       end,
     },
     window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
+       completion = cmp.config.window.bordered(),
+       documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -73,7 +73,7 @@ local custom_attach = function()
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<C-K>', vim.lsp.buf.signature_help, bufopts)
   vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wl', function()
@@ -83,10 +83,11 @@ local custom_attach = function()
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<leader><F3>', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('v', '<leader><F2>', function(bufopts)vim.lsp.buf.range_formatting(bufopts)end, bufopts)
 end
             
-local signs = { Error = "🔥", Warn = "⚠️ ", Hint = "✨", Info = "ℹ️ "  }
+local signs = { Error = "❌", Warn = "⚠️ ", Hint = "💡", Info = "ℹ️ "  }
 for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl  })

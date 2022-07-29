@@ -84,7 +84,9 @@ gJ - join current line with next, do not remove leading spaces
 **Windows actions**
 
 <C-w><C-r> - rotate windows in a split
-
+### lsp config
+install treesitter on your path
+install yapf
 ###Resources
 https://takac.github.io/2013/01/30/vim-grammar/
 
@@ -92,4 +94,8 @@ https://github.com/vim/vim/issues/3629#issuecomment-440845680https://github.com/
 
 ### Will be nice to have
 a list of the lines where a particular search matches(in current file, other files, all the files, open files)
+lsp formatting for a selected range of lines
+autocompletion of function/method parameters or a floating window for them
+list of open buffers that can be searched by text or browsed with keys
+
 
