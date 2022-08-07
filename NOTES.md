@@ -98,4 +98,21 @@ lsp formatting for a selected range of lines
 autocompletion of function/method parameters or a floating window for them
 list of open buffers that can be searched by text or browsed with keys
 
+### External dependencies
+ripgrep
+fd
+tree-sitter
+yapf
+clangd
 
+#### Bash commands
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb 
+sudo dpkg -i ripgrep_13.0.0_amd64.deb 
+sudo apt install fd-find 
+ln -s $(which fdfind) ~/bin/fd 
+ 
+
+### Pyenv
+To recompile a python version without recreate your virtual environments:
+$ env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.7.7 -vvv 
+$ pyenv rehash

@@ -52,6 +52,10 @@ require('packer').startup(function()
   use {'itchyny/lightline.vim'}
   use {'nvim-treesitter/nvim-treesitter', run = function() require('nvim-treesitter.install').update({ with_sync = true }) end}
   use { "sainnhe/everforest", config = function() vim.cmd "colorscheme everforest" end }
+--  use {
+--  'yamatsum/nvim-nonicons',
+--  requires = {'kyazdani42/nvim-web-devicons'}
+-- }
   use { 'kyazdani42/nvim-tree.lua',
   requires = {
     'kyazdani42/nvim-web-devicons', -- optional, for file icons
@@ -59,6 +63,11 @@ require('packer').startup(function()
   tag = 'nightly' -- optional, updated every week. (see issue #1193)
 }
 use {'tell-k/vim-autopep8'}
+use {
+  'nvim-telescope/telescope.nvim', tag = '0.1.0',
+-- or                            , branch = '0.1.x',
+  requires = { {'nvim-lua/plenary.nvim'} }
+}
 end)
 
     if packer_bootstrap then

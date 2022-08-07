@@ -64,6 +64,18 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>r', vim.diagnostic.setloclist, opts)
 
+-- vim.diagnostic.configuration
+vim.diagnostic.config(
+{
+  virtual_text = true,
+  signs = true,
+  update_in_insert = false,
+  underline = true,
+  severity_sort = false,
+  float = true,
+}
+)
+
 local custom_attach = function()
   vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   -- Mappings.
@@ -81,13 +93,14 @@ local custom_attach = function()
   end, bufopts)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
+  vim.keymap.set('v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<leader><F3>', vim.lsp.buf.formatting, bufopts)
-  vim.keymap.set('v', '<leader><F2>', function(bufopts)vim.lsp.buf.range_formatting(bufopts)end, bufopts)
+  vim.keymap.set('v', '<leader><F2>', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', bufopts)
 end
             
-local signs = { Error = "❌", Warn = "⚠️ ", Hint = "💡", Info = "ℹ️ "  }
+local signs = { Error = "✘", Warn = "▲", Hint = "⚑", Info = "♣"}
 for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl  })
