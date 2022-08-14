@@ -88,6 +88,7 @@ use {
         map_c_w = false -- map <c-w> to delete a pair if possible,
 } ) end
 }
+use 'marko-cerovac/material.nvim'
 end)
 
     if packer_bootstrap then

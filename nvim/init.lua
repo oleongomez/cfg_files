@@ -37,7 +37,8 @@ vim.api.nvim_set_keymap("v","<leader>k",":m '<-2<cr>gv=gv",{noremap = true})
 vim.api.nvim_set_keymap("n","<leader>s",":CtrlP ./<cr><c-d>",{noremap = true}) 
 
 -- Color scheme
-vim.cmd "colorscheme everforest"
+-- vim.cmd "colorscheme everforest"
+vim.cmd "colorscheme material"
 
 -- tree-sitter modules
 require'nvim-treesitter.configs'.setup {
