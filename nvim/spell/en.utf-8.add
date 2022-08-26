@@ -91,4 +91,8 @@ def
 return
 period
 monitor_messages
-top
+stream_signals
+monitor_signals
+get_signals
+signal_types
+get_signals

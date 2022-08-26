@@ -608,8 +608,16 @@ schemes:
 # *SolarizedDark
 # *TomorrowNight
 
-      #colors: *GruvboxDark
+#  colors: *DoomOne
+#  colors: *Dracula
+#  colors: *GruvboxDark
+#  colors: *MonokaiPro
 colors: *Mine
+#  colors: *OceanicNext
+#  colors: *Palenight
+#  colors: *SolarizedLight
+#  colors: *SolarizedDark
+#  colors: *TomorrowNight
 
 #######################################
 ##       END OF COLOR SCHEMES        ##

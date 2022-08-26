@@ -48,6 +48,7 @@ require('packer').startup(function()
   use { 'hrsh7th/nvim-cmp' }
   use { 'hrsh7th/cmp-vsnip' }
   use { 'hrsh7th/vim-vsnip' }
+  use { 'hrsh7th/vim-vsnip-integ' }
   use {'nvim-treesitter/nvim-treesitter', run = function() require('nvim-treesitter.install').update({ with_sync = true }) end}
   use {'kyazdani42/nvim-web-devicons'}
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
