@@ -39,7 +39,6 @@ local use = require('packer').use
 require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
   use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
-  use { 'ctrlpvim/ctrlp.vim' }
   use { 'oleongomez/vim-commenter' }
   use { 'tpope/vim-surround' }
   use { 'hrsh7th/cmp-nvim-lsp' }

@@ -36,6 +36,9 @@ vim.api.nvim_set_keymap("v","<leader>k",":m '<-2<cr>gv=gv",{noremap = true})
 
 vim.api.nvim_set_keymap("n","<leader>s",":CtrlP ./<cr><c-d>",{noremap = true}) 
 
+--clipboard
+vim.opt.clipboard['unnamed']=plus
+
 -- Color scheme
 -- vim.cmd "colorscheme everforest"
 vim.cmd "colorscheme material"
@@ -137,4 +140,3 @@ local map_cr = true
 local map_bs = true  -- map the <BS> key
 local map_c_h = false  -- Map the <C-h> key to delete a pair
 local map_c_w = false -- map <c-w> to delete a pair if possible
-
