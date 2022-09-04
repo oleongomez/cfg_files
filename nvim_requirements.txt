@@ -1,26 +1,26 @@
-autopep8==1.6.0
-flake8==4.0.1
-flake8-polyfill==1.0.2
-isort==5.10.1
-jedi==0.18.1
-mccabe==0.6.1
+autopep8
+flake8
+flake8-polyfill
+isort
+jedi
+mccabe
 mypy
-mypy-extensions==0.4.3
-neovim==0.3.1
-pycodestyle==2.8.0
-pycparser==2.21
-pydocstyle @ file:///home/oscar/.cache/pypoetry/artifacts/45/b5/96/064cd99dd9d7fb65b17ad775e09c4844e912f8c5d38e89b8c88e2f6c4f/pydocstyle-6.1.1-py3-none-any.whl
-pyflakes==2.4.0
-pylint @ file:///home/oscar/.cache/pypoetry/artifacts/53/cd/f6/11f8947489b954f178ed64b6232017b3f1c4f53855b9303838afd5590d/pylint-2.14.4-py3-none-any.whl
-pylint-celery==0.3
-pylint-django @ file:///home/oscar/.cache/pypoetry/artifacts/aa/a0/b0/fc7329b02b5bcf5191670f2803ff1c27eabd4c86174d9b6963b9a8ad10/pylint_django-2.5.3-py3-none-any.whl
-pylint-flask==0.6
-pylint-plugin-utils==0.7
-pylsp-mypy==0.6.2
-pylsp-rope==0.1.9
-pynvim==0.4.3
-pyparsing @ file:///home/oscar/.cache/pypoetry/artifacts/db/75/c9/c163dd2ceb571876fee95c21e0051c804d9df2dd6e986c0e478dee7d11/pyparsing-3.0.9-py3-none-any.whl
-python-lsp-jsonrpc==1.0.0
-python-lsp-server==1.5.0
-rope==1.2.0
-yapf==0.32.0
+mypy-extensions
+neovim
+pycodestyle
+pycparser
+pyflakes
+pylint-celery
+pylint-flask
+pylint-plugin-utils
+pylsp-mypy
+pylsp-rope
+pynvim
+python-lsp-jsonrpc
+python-lsp-server
+rope
+yapf
+pydocstyle
+pylint-django
+pylint
+pyparsing

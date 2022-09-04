@@ -88,6 +88,7 @@ use {
 } ) end
 }
 use 'marko-cerovac/material.nvim'
+use { "nvim-telescope/telescope-file-browser.nvim" }
 end)
 
     if packer_bootstrap then

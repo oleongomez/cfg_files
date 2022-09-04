@@ -76,10 +76,12 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- Telescope keybindings
+require("telescope").load_extension "file_browser"
 vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>fe", ":Telescope file_browser<CR>", {noremap = true})
 
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
