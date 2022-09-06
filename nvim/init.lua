@@ -46,7 +46,7 @@ vim.cmd "colorscheme nord"
 -- tree-sitter modules
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "lua", "rust", "python", "json", "yaml", "go", "bash", "cpp", "css" , "javascript", "typescript" },
+  ensure_installed = { "c", "rust", "python", "json", "yaml", "go", "bash", "cpp", "css" , "javascript", "typescript" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -55,7 +55,7 @@ require'nvim-treesitter.configs'.setup {
   auto_install = true,
 
   -- List of parsers to ignore installing (for "all")
---  ignore_install = { "javascript" },
+  ignore_install = { "lua" },
 
   highlight = {
     -- `false` will disable the whole extension

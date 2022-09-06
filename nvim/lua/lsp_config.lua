@@ -115,7 +115,8 @@ lsp.pylsp.setup{on_attach=custom_attach,
                 autopep8 = {enabled = false},
                 pycodestyle = {maxLineLength=100, enabled=false},
                 pylint = {enabled = true},
-                pylsp_mypy = {enabled = true, live_mode = true, strict = true},
+
+                pylsp_mypy = {enabled = true, live_mode = true, strict = true, overrides = {"--allow-untyped-decorators"}},
                 yapf = {enabled = true}
 
             }
