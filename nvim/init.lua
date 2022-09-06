@@ -40,8 +40,7 @@ vim.api.nvim_set_keymap("n","<leader>s",":CtrlP ./<cr><c-d>",{noremap = true})
 vim.opt.clipboard['unnamed']=plus
 
 -- Color scheme
--- vim.cmd "colorscheme everforest"
-vim.cmd "colorscheme material"
+vim.cmd "colorscheme nord"
 
 -- tree-sitter modules
 require'nvim-treesitter.configs'.setup {
@@ -81,7 +80,7 @@ vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin'
 vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<CR>", {noremap = true})
-vim.api.nvim_set_keymap("n", "<leader>fe", ":Telescope file_browser<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>fe", ":Telescope file_browser hidden=true<CR>", {noremap = true})
 
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true

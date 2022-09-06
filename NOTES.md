@@ -68,6 +68,7 @@ mA - create a mark in the file but can return to it form any other file
 
 **Navigation**
 zz - centers the current line in the screen.
+zt - scrolls to see the current line at the top
 
 **Operations**
 
@@ -93,10 +94,10 @@ https://takac.github.io/2013/01/30/vim-grammar/
 https://github.com/vim/vim/issues/3629#issuecomment-440845680https://github.com/vim/vim/issues/3629#issuecomment-440845680
 
 ### Will be nice to have
-a list of the lines where a particular search matches(in current file, other files, all the files, open files)
-lsp formatting for a selected range of lines
+a list of the lines where a particular search matches(in current file, other files, all the files, open files): Telescope plugin
+lsp formatting for a selected range of lines: kind of works now on lsp. Sometimes the formatter does nothing
 autocompletion of function/method parameters or a floating window for them
-list of open buffers that can be searched by text or browsed with keys
+list of open buffers that can be searched by text or browsed with keys: Telescope plugin
 
 ### External dependencies
 ripgrep
@@ -116,3 +117,24 @@ ln -s $(which fdfind) ~/bin/fd
 To recompile a python version without recreate your virtual environments:
 $ env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.7.7 -vvv 
 $ pyenv rehash
+
+### tmux
+Print all colors
+`for x in {0..255}; do  printf "\x1b[38;5;${x}mcolor%-5i\x1b[0m" $x ; if ! (( ($x + 1 ) % 8 )); then echo ; fi ; done`
+https://cassidy.codes/blog/2019-08-03-tmux-colour-theme/
+https://protechnotes.com/comprehensive-tmux-tutorial-for-beginners-with-a-cheat-sheet/
+https://arcolinux.com/everything-you-need-to-know-about-tmux-status-bar/
+
+### markdown
+https://www.markdownguide.org/cheat-sheet/
+
+## Usefull plugins
+Packer
+nvim-lspconfig
+vim-surround
+nvim-treesitter
+nvim-web-devicons
+lualine
+nvim-autopairs
+telescope-file-browser
+Telescope 

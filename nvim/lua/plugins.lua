@@ -49,21 +49,17 @@ require('packer').startup(function()
   use { 'hrsh7th/cmp-vsnip' }
   use { 'hrsh7th/vim-vsnip' }
   use {'nvim-treesitter/nvim-treesitter', run = function() require('nvim-treesitter.install').update({ with_sync = true }) end}
-  use { "sainnhe/everforest", config = function() vim.cmd "colorscheme everforest" end }
+  use {'kyazdani42/nvim-web-devicons'}
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true }}
---  use {
---  'yamatsum/nvim-nonicons',
---  requires = {'kyazdani42/nvim-web-devicons'}
--- }
-  use { 'kyazdani42/nvim-tree.lua',
-  requires = {
-    'kyazdani42/nvim-web-devicons', -- optional, for file icons
-  },
-  tag = 'nightly' -- optional, updated every week. (see issue #1193)
-}
+--  use { 'yamatsum/nvim-nonicons', requires = {'kyazdani42/nvim-web-devicons'} }
+--  use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons', -- optional, for file icons
+--  },
+--  tag = 'nightly' -- optional, updated every week. (see issue #1193)
+--}
 use {'tell-k/vim-autopep8'}
 use {
-  'nvim-telescope/telescope.nvim', tag = '0.1.0',
+  'nvim-telescope/telescope.nvim', branch= 'master',
+--  tag = '0.1.0',
 -- or                            , branch = '0.1.x',
   requires = { {'nvim-lua/plenary.nvim'} }
 }
@@ -87,7 +83,8 @@ use {
         map_c_w = false -- map <c-w> to delete a pair if possible,
 } ) end
 }
-use 'marko-cerovac/material.nvim'
+-- use 'marko-cerovac/material.nvim'
+use 'shaunsingh/nord.nvim'
 use { "nvim-telescope/telescope-file-browser.nvim" }
 end)
 
