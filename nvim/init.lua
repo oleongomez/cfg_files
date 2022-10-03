@@ -11,7 +11,8 @@ vim.opt.spell = true
 vim.opt.nu =  true
 vim.opt.rnu =  true
 vim.opt.undofile = true
-
+vim.wo.signcolumn = 'yes'
+vim.o.termguicolors = true
 -- Key Mappings
 vim.g.mapleader = " "
 vim.api.nvim_set_keymap("n","<c-h>","<c-w><c-h>",{noremap = true})
@@ -74,9 +75,10 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+require("telescope").setup{defaults = { file_ignore_patterns = {".git", ".pylint_cache", ".mypy_cache", ".pytest_cache", "__pycache__" }} }
 -- Telescope keybindings
 require("telescope").load_extension "file_browser"
-vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<CR>", {noremap = true})

@@ -1,8 +1,8 @@
+vim.opt.completeopt = { 'menu','menuone','noselect' }
 local lsp = require('lspconfig')
 local cmp = require('cmp')
   cmp.setup({
     snippet = {
-      -- REQUIRED - you must specify a snippet engine
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
       end,
@@ -52,9 +52,9 @@ local cmp = require('cmp')
       { name = 'cmdline' }
     })
   })
-
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local flags = { debounce_text_changes = 150 }
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -96,7 +96,7 @@ local custom_attach = function()
   vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
   vim.keymap.set('v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<leader><F3>', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<leader><F3>', vim.lsp.buf.format, bufopts)
   vim.keymap.set('v', '<leader><F2>', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', bufopts)
 end
             
@@ -108,11 +108,12 @@ for type, icon in pairs(signs) do
 
 lsp.pylsp.setup{on_attach=custom_attach,
     capabilities=capabilities,
+    flags=flags,
     settings = {
         pylsp = {
             plugins = {
                 autopep8 = {enabled = false},
-                pycodestyle = {maxLineLength=100},
+                pycodestyle = {maxLineLength=100, enabled=false},
                 pylint = {enabled = true},
                 pylsp_mypy = {enabled = true, live_mode = true, strict = true},
                 yapf = {enabled = true}
@@ -125,6 +126,7 @@ lsp.pylsp.setup{on_attach=custom_attach,
 require'lspconfig'.sumneko_lua.setup {
     on_attach=custom_attach,
     capabilities=capabilities,
+    flags=flags,
   settings = {
     Lua = {
       runtime = {
@@ -150,7 +152,10 @@ require'lspconfig'.sumneko_lua.setup {
 require'lspconfig'.tsserver.setup({
     on_attach=custom_attach,
     capabilities=capabilities,
+    flags=flags,
     cmd= { "typescript-language-server", "--stdio" },
     filetypes= { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     init_options= { hostInfo = "neovim" }
 })
+
+
