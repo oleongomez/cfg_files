@@ -111,6 +111,7 @@ curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_
 sudo dpkg -i ripgrep_13.0.0_amd64.deb 
 sudo apt install fd-find 
 ln -s $(which fdfind) ~/bin/fd 
+install ccls
  
 
 ### Pyenv

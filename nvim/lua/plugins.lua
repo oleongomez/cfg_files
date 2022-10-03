@@ -79,6 +79,7 @@ use {
 }
 use 'shaunsingh/nord.nvim'
 use { "nvim-telescope/telescope-file-browser.nvim" }
+use {"f-person/git-blame.nvim"}
 end)
 
     if packer_bootstrap then

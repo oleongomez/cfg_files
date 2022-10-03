@@ -52,6 +52,7 @@ local cmp = require('cmp')
       { name = 'cmdline' }
     })
   })
+
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local flags = { debounce_text_changes = 150 }
@@ -160,3 +161,16 @@ require'lspconfig'.tsserver.setup({
 })
 
 
+local lspconfig = require'lspconfig'
+lspconfig.ccls.setup {
+  init_options = {
+    compilationDatabaseDirectory = "build";
+    index = {
+      threads = 0;
+    };
+    clang = {
+      excludeArgs = { "-frounding-math"} ;
+    };
+  }
+}
+require'lspconfig'.ccls.setup{}
