@@ -26,8 +26,8 @@ vim.api.nvim_set_keymap("n","<leader>w",":w<cr>",{noremap = true})
 vim.api.nvim_set_keymap("n","<leader>q",":q<cr>",{noremap = true})
 
 
-vim.api.nvim_set_keymap("n","<F3>",":set hlsearch!<cr>",{noremap = true})
-vim.api.nvim_set_keymap("n","<F2>",":buffers<CR>:buffer<space>",{noremap = true})
+-- vim.api.nvim_set_keymap("n","<F3>",":set hlsearch!<cr>",{noremap = true})
+-- vim.api.nvim_set_keymap("n","<F2>",":buffers<CR>:buffer<space>",{noremap = true})
 
 vim.api.nvim_set_keymap("n","<leader>j",":m .+1<cr>==",{noremap = true})
 vim.api.nvim_set_keymap("n","<leader>k",":m .-2<cr>==",{noremap = true})
@@ -35,7 +35,7 @@ vim.api.nvim_set_keymap("n","<leader>k",":m .-2<cr>==",{noremap = true})
 vim.api.nvim_set_keymap("v","<leader>j",":m '>+1<cr>gv=gv",{noremap = true})
 vim.api.nvim_set_keymap("v","<leader>k",":m '<-2<cr>gv=gv",{noremap = true})
 
-vim.api.nvim_set_keymap("n","<leader>s",":CtrlP ./<cr><c-d>",{noremap = true}) 
+-- vim.api.nvim_set_keymap("n","<leader>s",":CtrlP ./<cr><c-d>",{noremap = true}) 
 
 --clipboard
 vim.opt.clipboard['unnamed']=plus
@@ -117,7 +117,7 @@ require('lualine').setup {
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
+    lualine_c = {{'filename', path=1}},
     lualine_x = {'location'},
     lualine_y = {},
     lualine_z = {}

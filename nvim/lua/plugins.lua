@@ -77,6 +77,7 @@ use {
         map_c_w = false -- map <c-w> to delete a pair if possible,
 } ) end
 }
+use "rafamadriz/friendly-snippets"
 use 'shaunsingh/nord.nvim'
 use { "nvim-telescope/telescope-file-browser.nvim" }
 use {"f-person/git-blame.nvim"}

@@ -21,17 +21,7 @@ local cmp = require('cmp')
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'vsnip' }, -- For vsnip users.
-    }, {
-      { name = 'buffer' },
-    })
-  })
-
-  -- Set configuration for specific filetype.
-  cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    }, {
-      { name = 'buffer' },
+      { name = 'buffer' }
     })
   })
 
@@ -95,10 +85,10 @@ local custom_attach = function()
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
-  vim.keymap.set('v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', bufopts)
+  vim.keymap.set('v', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<leader><F3>', vim.lsp.buf.format, bufopts)
-  vim.keymap.set('v', '<leader><F2>', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', bufopts)
+  vim.keymap.set('v', '<leader><F2>', '<cmd>lua vim.lsp.buf.format()<CR>', bufopts)
 end
             
 local signs = { Error = "✘", Warn = "▲", Hint = "⚑", Info = "♣"}
@@ -114,10 +104,9 @@ lsp.pylsp.setup{on_attach=custom_attach,
         pylsp = {
             plugins = {
                 autopep8 = {enabled = false},
-                pycodestyle = {maxLineLength=100, enabled=false},
-                pylint = {enabled = true},
-
-                pylsp_mypy = {enabled = true, live_mode = true, strict = true, overrides = {"--allow-untyped-decorators"}},
+                pycodestyle = {maxLineLength=100, enabled=true},
+                pylint = {enabled = false},
+                pylsp_mypy = {enabled = true, live_mode = true, strict = true},
                 yapf = {enabled = true}
 
             }
