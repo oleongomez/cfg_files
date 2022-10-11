@@ -78,6 +78,7 @@ use {
 } ) end
 }
 use "rafamadriz/friendly-snippets"
+use "onsails/lspkind-nvim"
 use 'shaunsingh/nord.nvim'
 use { "nvim-telescope/telescope-file-browser.nvim" }
 use {"f-person/git-blame.nvim"}

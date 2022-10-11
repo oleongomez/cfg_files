@@ -1,14 +1,21 @@
 vim.opt.completeopt = { 'menu','menuone','noselect' }
 local lsp = require('lspconfig')
+
+local lspkind = require('lspkind')
 local cmp = require('cmp')
   cmp.setup({
+    view = {
+        entries = {name = 'custom', selection_order = 'near_cursor'}
+    },
     snippet = {
       expand = function(args)
         vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
       end,
     },
     window = {
-       completion = cmp.config.window.bordered(),
+       completion = {winhightligth = "Normal:Pmenu, FloatBorder:Pmenu, Search:None",
+   col_offset = 3,
+   side_padding = 0},
        documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
@@ -22,7 +29,18 @@ local cmp = require('cmp')
       { name = 'nvim_lsp' },
       { name = 'vsnip' }, -- For vsnip users.
       { name = 'buffer' }
-    })
+    }),
+    formatting = {
+        fields = {"kind", "abbr", "menu"},
+ format = function(entry, vim_item)
+      local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+      local strings = vim.split(kind.kind, "%s", { trimempty = true })
+      kind.kind = " " .. strings[1] .. " "
+      kind.menu = "    (" .. strings[2] .. ")"
+
+      return kind
+    end,
+  }
   })
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -66,7 +84,6 @@ vim.diagnostic.config(
   float = true,
 }
 )
-
 local custom_attach = function()
   vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   -- Mappings.
@@ -163,3 +180,18 @@ lspconfig.ccls.setup {
   }
 }
 require'lspconfig'.ccls.setup{}
+require'lspconfig'.gopls.setup({
+    on_attach=custom_attach,
+    capabilities=capabilities,
+    flags=flags,
+     settings = {
+	      gopls = {
+		      experimentalPostfixCompletions = true,
+		      analyses = {
+		        unusedparams = true,
+		        shadow = true,
+		     },
+		     staticcheck = true,
+		    },
+        }
+})
