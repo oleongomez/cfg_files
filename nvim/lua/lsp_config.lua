@@ -1,9 +1,27 @@
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-local lsp = require('lspconfig')
 
 local lspkind = require('lspkind')
+
+local lsp = require('lspconfig')
+
 local cmp = require('cmp')
 cmp.setup({
+    formatting = {
+        format = lspkind.cmp_format({
+            cb = function(entry, vim_item)
+                local word = entry.get_insert_text()
+                if entry.completion_item.insertTextFormat == vim.types.lsp.insertTextFormat.Snippet then
+                    word = vim.lsp.util.parse_snippet(word)
+                end
+                word = str.oneline(word)
+                if entry.completion_item.insertTextFormat == vim.types.lsp.insertTextFormat.Snippet then
+                    word = word .. "->"
+                end
+                vim_item.abbr = word
+                return vim_item
+            end
+        })
+    },
     view = {
         entries = { name = 'custom', selection_order = 'near_cursor' }
     },
@@ -30,17 +48,6 @@ cmp.setup({
         { name = 'vsnip' }, -- For vsnip users.
         { name = 'buffer' }
     }),
-    formatting = {
-        fields = { "kind", "abbr", "menu" },
-        format = function(entry, vim_item)
-            local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-            local strings = vim.split(kind.kind, "%s", { trimempty = true })
-            kind.kind = " " .. strings[1] .. " "
-            kind.menu = "    (" .. strings[2] .. ")"
-
-            return kind
-        end,
-    }
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -105,7 +112,7 @@ local custom_attach = function()
     vim.keymap.set('v', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<leader><F3>', vim.lsp.buf.format, bufopts)
-    vim.keymap.set('v', '<leader><F2>', '<cmd>lua vim.lsp.buf.format()<CR>', bufopts)
+    vim.keymap.set('v', '<leader><F2>', vim.lsp.buf.format, bufopts)
 end
 
 local signs = { Error = "✘", Warn = "▲", Hint = "⚑", Info = "♣" }
@@ -115,6 +122,7 @@ for type, icon in pairs(signs) do
 end
 
 lsp.pylsp.setup { on_attach = custom_attach,
+    cmd = {"pylsp", "-v", "--log-file", "/tmp/nvim-pylsp.log"},
     capabilities = capabilities,
     flags = flags,
     settings = {
@@ -148,6 +156,7 @@ require 'lspconfig'.sumneko_lua.setup {
             workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false,
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
@@ -155,6 +164,7 @@ require 'lspconfig'.sumneko_lua.setup {
             },
         },
     },
+  },
 }
 
 require 'lspconfig'.tsserver.setup({
@@ -197,4 +207,53 @@ require 'lspconfig'.gopls.setup({
             staticcheck = true,
         },
     }
+})
+require('lspkind').init({
+    -- DEPRECATED (use mode instead): enables text annotations
+    --
+    -- default: true
+    -- with_text = true,
+
+    -- defines how annotations are shown
+    -- default: symbol
+    -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+    mode = 'symbol_text',
+
+    -- default symbol map
+    -- can be either 'default' (requires nerd-fonts font) or
+    -- 'codicons' for codicon preset (requires vscode-codicons font)
+    --
+    -- default: 'default'
+    preset = 'codicons',
+
+    -- override preset symbols
+    --
+    -- default: {}
+    symbol_map = {
+        Text = "",
+        Method = "",
+        Function = "",
+        Constructor = "",
+        Field = "ﰠ",
+        Variable = "",
+        Class = "ﴯ",
+        Interface = "",
+        Module = "",
+        Property = "ﰠ",
+        Unit = "塞",
+        Value = "",
+        Enum = "",
+        Keyword = "",
+        Snippet = "",
+        Color = "",
+        File = "",
+        Reference = "",
+        Folder = "",
+        EnumMember = "",
+        Constant = "",
+        Struct = "פּ",
+        Event = "",
+        Operator = "",
+        TypeParameter = ""
+    },
 })

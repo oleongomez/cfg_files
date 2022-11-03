@@ -193,4 +193,4 @@ set_virtualenv ()
     fi
 }
 set_bash_prompt
-
+setxkbmap -layout us -option caps:escape
