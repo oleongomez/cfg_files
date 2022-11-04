@@ -103,7 +103,7 @@ fade-out-step = 0.03;
 
 # Opacity of inactive windows. (0.1 - 1.0, defaults to 1.0)
 # inactive-opacity = 1
-inactive-opacity = 0.8;
+inactive-opacity = 0.6;
 
 # Opacity of window titlebars and borders. (0.1 - 1.0, disabled by default)
 # frame-opacity = 1.0
@@ -114,7 +114,7 @@ frame-opacity = 0.7;
 inactive-opacity-override = false;
 
 # Default opacity for active windows. (0.0 - 1.0, defaults to 1.0)
-# active-opacity = 1.0
+active-opacity = 0.9
 
 # Dim inactive windows. (0.0 - 1.0, defaults to 0.0)
 # inactive-dim = 0.0
@@ -134,6 +134,10 @@ focus-exclude = [ "class_g = 'Cairo-clock'" ];
 #    opacity-rule = [ "80:class_g = 'URxvt'" ];
 #
 # opacity-rule = []
+opacity-rule = [
+  "90:class_g = 'URxvt' && focused",
+  "60:class_g = 'URxvt' && !focused"
+];
 
 
 #################################
@@ -367,7 +371,7 @@ use-damage = true;
 # If using the "TRACE" log level, it's better to log into a file
 # using *--log-file*, since it can generate a huge stream of logs.
 #
-# log-level = "debug"
+log-level = "debug"
 # log-level = "warn";
 
 # Set the log file.
@@ -376,7 +380,7 @@ use-damage = true;
 # logs might still be written to the stderr.
 # When setting this option from the config file, it is recommended to use an absolute path.
 #
-# log-file = "/tmp/picom.log"
+log-file = "/tmp/picom.log"
 
 # Show all X errors (for debugging)
 # show-all-xerrors = false
