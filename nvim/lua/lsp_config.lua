@@ -122,7 +122,7 @@ for type, icon in pairs(signs) do
 end
 
 lsp.pylsp.setup { on_attach = custom_attach,
-    cmd = {"pylsp", "-v", "--log-file", "/tmp/nvim-pylsp.log"},
+    cmd = { "pylsp", "-v", "--log-file", "/tmp/nvim-pylsp.log" },
     capabilities = capabilities,
     flags = flags,
     settings = {
@@ -176,19 +176,10 @@ require 'lspconfig'.tsserver.setup({
 })
 
 
-local lspconfig = require 'lspconfig'
-lspconfig.ccls.setup {
-    init_options = {
-        compilationDatabaseDirectory = "build";
-        index = {
-            threads = 0;
-        };
-        clang = {
-            excludeArgs = { "-frounding-math" };
-        };
-    }
-}
-require 'lspconfig'.ccls.setup {}
+require("lspconfig").clangd.setup({
+    on_attach = custom_attach,
+    cmd = {"clangd-15"}
+})
 require 'lspconfig'.gopls.setup({
     on_attach = custom_attach,
     capabilities = capabilities,
