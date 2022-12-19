@@ -130,7 +130,7 @@ lsp.pylsp.setup { on_attach = custom_attach,
             plugins = {
                 autopep8 = { enabled = false },
                 pycodestyle = { maxLineLength = 100, enabled = true },
-                pylint = { enabled = false },
+                pylint = { enabled = true },
                 pylsp_mypy = { enabled = true, live_mode = true, strict = true },
                 yapf = { enabled = true }
 
@@ -247,3 +247,7 @@ require('lspkind').init({
         TypeParameter = ""
     },
 })
+
+require'lspconfig'.html.setup{
+    capabilities=capabilities
+}
