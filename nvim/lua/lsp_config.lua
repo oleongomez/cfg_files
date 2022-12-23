@@ -96,6 +96,7 @@ local custom_attach = function()
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    local format_options = { timeout_ms = 10000 }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -111,8 +112,8 @@ local custom_attach = function()
     vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
     vim.keymap.set('v', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<leader><F3>', vim.lsp.buf.format, bufopts)
-    vim.keymap.set('v', '<leader><F2>', vim.lsp.buf.format, bufopts)
+    vim.keymap.set('n', '<space><F3>', '<cmd>lua vim.lsp.buf.format({timeout_ms = 10000})<CR>', bufopts)
+    vim.keymap.set('v', '<space><F2>', '<cmd>lua vim.lsp.buf.format({timeout_ms = 10000})<CR>', bufopts)
 end
 
 local signs = { Error = "✘", Warn = "▲", Hint = "⚑", Info = "♣" }
@@ -139,7 +140,7 @@ lsp.pylsp.setup { on_attach = custom_attach,
     }
 }
 
-require 'lspconfig'.sumneko_lua.setup {
+lsp.sumneko_lua.setup {
     on_attach = custom_attach,
     capabilities = capabilities,
     flags = flags,
@@ -166,21 +167,24 @@ require 'lspconfig'.sumneko_lua.setup {
     },
 }
 
-require 'lspconfig'.tsserver.setup({
+lsp.tsserver.setup({
     on_attach = custom_attach,
     capabilities = capabilities,
     flags = flags,
     cmd = { "typescript-language-server", "--stdio" },
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-    init_options = { hostInfo = "neovim" }
+    init_options = { hostInfo = "neovim" },
+    root_dir = function () return vim.loop.cwd()
+    end
 })
 
 
-require("lspconfig").clangd.setup({
+lsp.clangd.setup({
     on_attach = custom_attach,
     cmd = {"clangd-15"}
 })
-require 'lspconfig'.gopls.setup({
+
+lsp.gopls.setup({
     on_attach = custom_attach,
     capabilities = capabilities,
     flags = flags,
@@ -248,6 +252,9 @@ require('lspkind').init({
     },
 })
 
-require'lspconfig'.html.setup{
+lsp.html.setup{
     capabilities=capabilities
 }
+
+vim.o.updaterime = 250
+vim.cmd [[autocmd! CursorHold, CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
