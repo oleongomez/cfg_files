@@ -1,4 +1,4 @@
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+-- vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
 local lspkind = require('lspkind')
 
@@ -6,6 +6,8 @@ local lsp = require('lspconfig')
 
 local cmp = require('cmp')
 cmp.setup({
+    completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
+    experimental = { native_menu = false, ghost_text = false },
     formatting = {
         format = lspkind.cmp_format({
             cb = function(entry, vim_item)
@@ -69,7 +71,8 @@ cmp.setup.cmdline(':', {
 })
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local capabilities = cmp_nvim_lsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local flags = { debounce_text_changes = 150 }
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 -- Mappings.
@@ -91,12 +94,20 @@ vim.diagnostic.config(
         float = true,
     }
 )
+
+local lsp_signature = require "lsp_signature"
+lsp_signature.setup {
+    bind = true,
+    handler_opts = {
+        border = "rounded",
+    },
+}
+
 local custom_attach = function()
     vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    local format_options = { timeout_ms = 10000 }
+    local bufopts = { noremap = true, silent = true, buffer = vim.api.nvim_get_current_buf() }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -114,6 +125,7 @@ local custom_attach = function()
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<space><F3>', '<cmd>lua vim.lsp.buf.format({timeout_ms = 10000})<CR>', bufopts)
     vim.keymap.set('v', '<space><F2>', '<cmd>lua vim.lsp.buf.format({timeout_ms = 10000})<CR>', bufopts)
+    require('highlighting').setup(vim.lsp.get_active_clients()[1].server_capabilities)
 end
 
 local signs = { Error = "✘", Warn = "▲", Hint = "⚑", Info = "♣" }
@@ -174,14 +186,14 @@ lsp.tsserver.setup({
     cmd = { "typescript-language-server", "--stdio" },
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     init_options = { hostInfo = "neovim" },
-    root_dir = function () return vim.loop.cwd()
+    root_dir = function() return vim.loop.cwd()
     end
 })
 
 
 lsp.clangd.setup({
     on_attach = custom_attach,
-    cmd = {"clangd-15"}
+    cmd = { "clangd-15" }
 })
 
 lsp.gopls.setup({
@@ -252,8 +264,8 @@ require('lspkind').init({
     },
 })
 
-lsp.html.setup{
-    capabilities=capabilities
+lsp.html.setup {
+    capabilities = capabilities
 }
 
 vim.o.updaterime = 250
