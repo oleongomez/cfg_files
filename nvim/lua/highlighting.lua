@@ -12,7 +12,6 @@ function M.toggle()
 end
 
 local function colorize_highlight()
-    print('colorize')
     vim.api.nvim_exec(
         [[
               hi! LspReferenceRead ctermfg=237 guibg=#5e81ac
@@ -24,9 +23,6 @@ local function colorize_highlight()
 end
 
 function M.highlight(client)
-    for key, value in pairs(client) do
-        print(key, value)
-    end
     if M.highlight then
         local buffer_number = vim.api.nvim_get_current_buf()
         if client.documentHighlightProvider then

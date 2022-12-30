@@ -146,3 +146,20 @@ local map_cr = true
 local map_bs = true -- map the <BS> key
 local map_c_h = false -- Map the <C-h> key to delete a pair
 local map_c_w = false -- map <c-w> to delete a pair if possible
+
+
+local vimspector_conf = require('vimspector_conf')
+vim.api.nvim_set_keymap("n", "<leader><F4>", '<cmd>lua require("vimspector_conf").generate_debug_profile()<CR>',
+    { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vR", '<cmd> call vimspector#RunToCursor()<cr>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vc", '<cmd> call vimspector#Continue()<cr>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vi", '<cmd> call vimspector#StepInto()<cr>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vo", '<cmd> call vimspector#StepOver()<cr>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vs", '<cmd> call vimspector#Launch()<cr>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vt", '<cmd> call vimspector#ToogleBreakpoint()<cr>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vu", '<cmd> call vimspector#StepOut()<cr>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vS", '<cmd> call vimspector#Stop()<cr>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vr", '<cmd> call vimspector#Restart()<cr>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vx", '<cmd>VimspectorReset<cr>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vH", '<cmd>lua require("vimspector_conf").toogle_human_mode()<CR>', { noremap = true })
+require("luasnip.loaders.from_vscode").lazy_load()

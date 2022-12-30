@@ -3,20 +3,21 @@
 local lspkind = require('lspkind')
 
 local lsp = require('lspconfig')
-
+local types = require("cmp.types")
+local str = require("cmp.utils.str")
 local cmp = require('cmp')
 cmp.setup({
     completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
     experimental = { native_menu = false, ghost_text = false },
     formatting = {
         format = lspkind.cmp_format({
-            cb = function(entry, vim_item)
-                local word = entry.get_insert_text()
-                if entry.completion_item.insertTextFormat == vim.types.lsp.insertTextFormat.Snippet then
+            before = function(entry, vim_item)
+                local word = entry:get_insert_text()
+                if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
                     word = vim.lsp.util.parse_snippet(word)
                 end
                 word = str.oneline(word)
-                if entry.completion_item.insertTextFormat == vim.types.lsp.insertTextFormat.Snippet then
+                if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
                     word = word .. "->"
                 end
                 vim_item.abbr = word
@@ -29,7 +30,8 @@ cmp.setup({
     },
     snippet = {
         expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
     window = {
@@ -47,7 +49,8 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'vsnip' }, -- For vsnip users.
+        -- { name = 'vsnip' }, -- For vsnip users.
+        { name = 'luasnip', option = { show_autosnippets = true } }, -- For luasnip users.
         { name = 'buffer' }
     }),
 })
@@ -213,55 +216,6 @@ lsp.gopls.setup({
             staticcheck = true,
         },
     }
-})
-require('lspkind').init({
-    -- DEPRECATED (use mode instead): enables text annotations
-    --
-    -- default: true
-    -- with_text = true,
-
-    -- defines how annotations are shown
-    -- default: symbol
-    -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-    mode = 'symbol_text',
-
-    -- default symbol map
-    -- can be either 'default' (requires nerd-fonts font) or
-    -- 'codicons' for codicon preset (requires vscode-codicons font)
-    --
-    -- default: 'default'
-    preset = 'codicons',
-
-    -- override preset symbols
-    --
-    -- default: {}
-    symbol_map = {
-        Text = "",
-        Method = "",
-        Function = "",
-        Constructor = "",
-        Field = "ﰠ",
-        Variable = "",
-        Class = "ﴯ",
-        Interface = "",
-        Module = "",
-        Property = "ﰠ",
-        Unit = "塞",
-        Value = "",
-        Enum = "",
-        Keyword = "",
-        Snippet = "",
-        Color = "",
-        File = "",
-        Reference = "",
-        Folder = "",
-        EnumMember = "",
-        Constant = "",
-        Struct = "פּ",
-        Event = "",
-        Operator = "",
-        TypeParameter = ""
-    },
 })
 
 lsp.html.setup {

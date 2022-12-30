@@ -37,8 +37,17 @@ function M.setup()
         -- LSP
         local use = require('packer').use
         require('packer').startup(function()
+            use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
             use { "williamboman/nvim-lsp-installer" }
             use { "ray-x/lsp_signature.nvim", }
+            use {
+                "puremourning/vimspector",
+                cmd = { "VimspectorInstall", "VimspectorUpdate" },
+                fn = { "vimspector#Launch()", "vimspector#ToggleBreakpoint", "vimspector#Continue" },
+                config = function()
+                    require("config.vimspector").setup()
+                end,
+            }
             use 'wbthomason/packer.nvim' -- Package manager
             use { 'neovim/nvim-lspconfig' } -- Configurations for Nvim LSP
             use { 'oleongomez/vim-commenter' }
@@ -49,8 +58,8 @@ function M.setup()
             use { 'hrsh7th/cmp-cmdline' }
             use { 'hrsh7th/nvim-cmp' }
             use { 'hrsh7th/cmp-vsnip' }
-            use { 'hrsh7th/vim-vsnip' }
-            use { 'hrsh7th/vim-vsnip-integ' }
+            --use { 'hrsh7th/vim-vsnip' }
+            --use { 'hrsh7th/vim-vsnip-integ' }
             use { 'nvim-treesitter/nvim-treesitter',
                 run = function() require('nvim-treesitter.install').update({ with_sync = true }) end }
             use { 'kyazdani42/nvim-web-devicons' }
@@ -81,6 +90,7 @@ function M.setup()
                     })
                 end
             }
+            use { 'saadparwaiz1/cmp_luasnip' }
             use "rafamadriz/friendly-snippets"
             use "onsails/lspkind-nvim"
             use 'shaunsingh/nord.nvim'
