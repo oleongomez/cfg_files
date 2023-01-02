@@ -112,7 +112,7 @@ sudo dpkg -i ripgrep_13.0.0_amd64.deb
 sudo apt install fd-find 
 ln -s $(which fdfind) ~/bin/fd 
 install ccls
- 
+npm install -g @fsouza/prettierd
 
 ### Pyenv
 To recompile a python version without recreate your virtual environments:

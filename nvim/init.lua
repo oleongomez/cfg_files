@@ -26,18 +26,15 @@ vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
 
 vim.api.nvim_set_keymap("n", "<leader>w", ":w<cr>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>q", ":q<cr>", { noremap = true })
-
-
--- vim.api.nvim_set_keymap("n","<F3>",":set hlsearch!<cr>",{noremap = true})
--- vim.api.nvim_set_keymap("n","<F2>",":buffers<CR>:buffer<space>",{noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>qa", ":qa<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>wq", ":wq<cr>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>qq", ":q!<cr>", { noremap = true })
 
 vim.api.nvim_set_keymap("n", "<leader>j", ":m .+1<cr>==", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>k", ":m .-2<cr>==", { noremap = true })
 
 vim.api.nvim_set_keymap("v", "<leader>j", ":m '>+1<cr>gv=gv", { noremap = true })
 vim.api.nvim_set_keymap("v", "<leader>k", ":m '<-2<cr>gv=gv", { noremap = true })
-
--- vim.api.nvim_set_keymap("n","<leader>s",":CtrlP ./<cr><c-d>",{noremap = true})
 
 --clipboard
 vim.opt.clipboard['unnamed'] = plus
@@ -161,5 +158,6 @@ vim.api.nvim_set_keymap("n", "<leader>vu", '<cmd> call vimspector#StepOut()<cr>'
 vim.api.nvim_set_keymap("n", "<leader>vS", '<cmd> call vimspector#Stop()<cr>', { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>vr", '<cmd> call vimspector#Restart()<cr>', { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>vx", '<cmd>VimspectorReset<cr>', { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>vH", '<cmd>lua require("vimspector_conf").toogle_human_mode()<CR>', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>vH", '<cmd>lua require("vimspector_conf").toogle_human_mode()<CR>',
+    { noremap = true })
 require("luasnip.loaders.from_vscode").lazy_load()

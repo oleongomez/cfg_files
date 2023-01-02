@@ -1,5 +1,9 @@
 {
     "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+    "Lua.diagnostics.globals": [
+        "vim",
+        "buffer"
+    ],
     "Lua.workspace.library": [
         "/home/oscar/.config/nvim",
         "/home/oscar/.local/share/nvim/site",

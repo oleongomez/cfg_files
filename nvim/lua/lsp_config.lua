@@ -18,7 +18,7 @@ cmp.setup({
                 end
                 word = str.oneline(word)
                 if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
-                    word = word .. "->"
+                    word = word .. " ..."
                 end
                 vim_item.abbr = word
                 return vim_item
@@ -128,7 +128,9 @@ local custom_attach = function()
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<space><F3>', '<cmd>lua vim.lsp.buf.format({timeout_ms = 10000})<CR>', bufopts)
     vim.keymap.set('v', '<space><F2>', '<cmd>lua vim.lsp.buf.format({timeout_ms = 10000})<CR>', bufopts)
-    require('highlighting').setup(vim.lsp.get_active_clients()[1].server_capabilities)
+    -- require('highlighting').setup(vim.lsp.get_active_clients()[1].server_capabilities)
+    vim.o.updaterime = 50
+    require('diagnostic_float').init()
 end
 
 local signs = { Error = "✘", Warn = "▲", Hint = "⚑", Info = "♣" }
@@ -222,5 +224,25 @@ lsp.html.setup {
     capabilities = capabilities
 }
 
-vim.o.updaterime = 250
-vim.cmd [[autocmd! CursorHold, CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+
+
+local status, null_ls = pcall(require, "null-ls")
+if (not status) then return end
+null_ls.register( { sources = { null_ls.builtins.formatting.prettierd } })
+local status, prettier = pcall(require, "prettierd")
+if (not status) then return end
+
+prettier.setup({
+    bin = 'prettierd',
+    filetypes = {
+        "css",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "json",
+        "scss",
+        "less",
+    }
+
+})

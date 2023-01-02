@@ -37,7 +37,9 @@ function M.setup()
         -- LSP
         local use = require('packer').use
         require('packer').startup(function()
-            use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
+            use({ 'jose-elias-alvarez/null-ls.nvim' })
+            use('MunifTanjim/prettier.nvim')
+            use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
             use { "williamboman/nvim-lsp-installer" }
             use { "ray-x/lsp_signature.nvim", }
             use {
@@ -96,6 +98,20 @@ function M.setup()
             use 'shaunsingh/nord.nvim'
             use { "nvim-telescope/telescope-file-browser.nvim" }
             use { "f-person/git-blame.nvim" }
+            use({
+                "glepnir/lspsaga.nvim",
+                branch = "main",
+                config = function()
+                    local saga = require("lspsaga")
+
+                    saga.init_lsp_saga({
+                        -- your configuration
+                        server_filetype_map = {
+                            typescript = 'typescript'
+                        }
+                    })
+                end,
+            })
         end)
 
         if packer_bootstrap then
