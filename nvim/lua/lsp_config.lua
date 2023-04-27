@@ -102,8 +102,12 @@ local lsp_signature = require "lsp_signature"
 lsp_signature.setup {
     bind = true,
     handler_opts = {
-        border = "rounded",
+        border = "double",
     },
+    floating_window_above_cur_line = true,
+    floating_window_off_x = 10,
+    floating_window_off_y = 1,
+    hint_prefix = "☛  "
 }
 
 local custom_attach = function()
@@ -133,7 +137,7 @@ local custom_attach = function()
     require('diagnostic_float').init()
 end
 
-local signs = { Error = "✘", Warn = "▲", Hint = "⚑", Info = "♣" }
+local signs = { Error = "✘", Warn = "⚠ ", Hint = "☛ ", Info = "🛈 " }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -147,17 +151,19 @@ lsp.pylsp.setup { on_attach = custom_attach,
         pylsp = {
             plugins = {
                 autopep8 = { enabled = false },
-                pycodestyle = { maxLineLength = 100, enabled = true },
-                pylint = { enabled = true },
+                pycodestyle = { maxLineLength = 100, enabled = false },
+                pylint = { enabled = false },
                 pylsp_mypy = { enabled = true, live_mode = true, strict = true },
-                yapf = { enabled = true }
+                yapf = { enabled = true },
+                ruff = {enabled = true, lineLength = 100, config = "/home/oscar/ruff.toml"},
+                rope_autoimport = {enabled = true}
 
             }
         }
     }
 }
 
-lsp.sumneko_lua.setup {
+lsp.lua_ls.setup {
     on_attach = custom_attach,
     capabilities = capabilities,
     flags = flags,

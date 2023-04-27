@@ -25,3 +25,4 @@ pylint-django
 pylint
 pyparsing
 debugpy
+python-lsp-ruff

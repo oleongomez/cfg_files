@@ -139,8 +139,13 @@ _G.packer_plugins = {
     path = "/home/oscar/.local/share/nvim/site/pack/packer/start/nord.nvim",
     url = "https://github.com/shaunsingh/nord.nvim"
   },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/oscar/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
   ["nvim-autopairs"] = {
-    config = { "\27LJ\2\nÙ\2\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21disable_filetype\1\0\14\fmap_c_w\1\fmap_c_h\1\vmap_bs\2\vmap_cr\2\rcheck_ts\1\15break_undo\2\16enable_abbr\1\28enable_bracket_in_quote\2\30enable_check_bracket_line\2\22enable_afterquote\2\21enable_moveright\2\22ignored_next_char\19[%w%%%'%[%\"%.]\27disable_in_visualblock\1\21disable_in_macro\1\1\2\0\0\20TelescopePrompt\nsetup\19nvim-autopairs\frequire\0" },
+    config = { "\27LJ\2\nÙ\2\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21disable_filetype\1\0\14\fmap_c_w\1\22ignored_next_char\19[%w%%%'%[%\"%.]\27disable_in_visualblock\1\21disable_in_macro\1\fmap_c_h\1\vmap_bs\2\vmap_cr\2\rcheck_ts\1\15break_undo\2\16enable_abbr\1\28enable_bracket_in_quote\2\30enable_check_bracket_line\2\22enable_afterquote\2\21enable_moveright\2\1\2\0\0\20TelescopePrompt\nsetup\19nvim-autopairs\frequire\0" },
     loaded = true,
     path = "/home/oscar/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
@@ -179,6 +184,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/oscar/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["prettier.nvim"] = {
+    loaded = true,
+    path = "/home/oscar/.local/share/nvim/site/pack/packer/start/prettier.nvim",
+    url = "https://github.com/MunifTanjim/prettier.nvim"
   },
   ["telescope-file-browser.nvim"] = {
     loaded = true,
@@ -219,7 +229,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\nÙ\2\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21disable_filetype\1\0\14\fmap_c_w\1\fmap_c_h\1\vmap_bs\2\vmap_cr\2\rcheck_ts\1\15break_undo\2\16enable_abbr\1\28enable_bracket_in_quote\2\30enable_check_bracket_line\2\22enable_afterquote\2\21enable_moveright\2\22ignored_next_char\19[%w%%%'%[%\"%.]\27disable_in_visualblock\1\21disable_in_macro\1\1\2\0\0\20TelescopePrompt\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+try_loadstring("\27LJ\2\nÙ\2\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21disable_filetype\1\0\14\fmap_c_w\1\22ignored_next_char\19[%w%%%'%[%\"%.]\27disable_in_visualblock\1\21disable_in_macro\1\fmap_c_h\1\vmap_bs\2\vmap_cr\2\rcheck_ts\1\15break_undo\2\16enable_abbr\1\28enable_bracket_in_quote\2\30enable_check_bracket_line\2\22enable_afterquote\2\21enable_moveright\2\1\2\0\0\20TelescopePrompt\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
 
 -- Command lazy-loads
@@ -228,14 +238,14 @@ pcall(vim.api.nvim_create_user_command, 'VimspectorUpdate', function(cmdargs)
           require('packer.load')({'vimspector'}, { cmd = 'VimspectorUpdate', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'vimspector'}, { cmd = 'VimspectorUpdate' }, _G.packer_plugins)
+          require('packer.load')({'vimspector'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('VimspectorUpdate ', 'cmdline')
       end})
 pcall(vim.api.nvim_create_user_command, 'VimspectorInstall', function(cmdargs)
           require('packer.load')({'vimspector'}, { cmd = 'VimspectorInstall', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'vimspector'}, { cmd = 'VimspectorInstall' }, _G.packer_plugins)
+          require('packer.load')({'vimspector'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('VimspectorInstall ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)
@@ -244,9 +254,9 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Function lazy-loads
 time([[Defining lazy-load function autocommands]], true)
-vim.cmd[[au FuncUndefined vimspector#Launch() ++once lua require("packer.load")({'vimspector'}, {}, _G.packer_plugins)]]
 vim.cmd[[au FuncUndefined vimspector#ToggleBreakpoint ++once lua require("packer.load")({'vimspector'}, {}, _G.packer_plugins)]]
 vim.cmd[[au FuncUndefined vimspector#Continue ++once lua require("packer.load")({'vimspector'}, {}, _G.packer_plugins)]]
+vim.cmd[[au FuncUndefined vimspector#Launch() ++once lua require("packer.load")({'vimspector'}, {}, _G.packer_plugins)]]
 time([[Defining lazy-load function autocommands]], false)
 vim.cmd("augroup END")
 
