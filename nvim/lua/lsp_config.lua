@@ -106,7 +106,7 @@ lsp_signature.setup {
     },
     floating_window_above_cur_line = true,
     floating_window_off_x = 10,
-    floating_window_off_y = 1,
+    floating_window_off_y = 10,
     hint_prefix = "☛  "
 }
 
