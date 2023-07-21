@@ -193,7 +193,7 @@ client.background       #2E344080
 bar {
         font pango:Agave Nerd Font Bold 12
         tray_padding 1
-        status_command 2>/tmp/i3blocks.err i3blocks  -vvv -c /home/$USER/.config/i3blocks/i3blocks.conf | tee /tmpi3blocks.out
+        status_command 2>/tmp/i3blocks.err i3blocks  -vvv -c /home/$USER/.config/i3blocks/config | tee /tmp/i3blocks.out
         i3bar_command i3bar --transparency
     colors {
             separator  #1f222d00

@@ -135,8 +135,6 @@ export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin
 export WORKSPACE=/home/oscar/src/sw/firmware
 eval "$(direnv hook bash)"
-source /home/oscar/.bazel/bin/bazel-complete.bash
-source /home/oscar/installed_software/alacritty/extra/completions/alacritty.bash
 alias luamake=/luamake
 export PATH=~/installed_software/lua-language-server/bin:$PATH
 fortune
@@ -148,4 +146,3 @@ export NVM_DIR="$HOME/.nvm"
 
 setxkbmap -layout us -option caps:escape
 #export LIBGL_ALWAYS_SOFTWARE=1
-source /home/oscar/installed_software/alacritty/extra/completions/alacritty.bash
