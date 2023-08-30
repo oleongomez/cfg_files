@@ -116,8 +116,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH="/home/oscar/bin/go:/home/oscar/bin:/home/oscar/.yarn/bin:/home/oscar/.config/yarn/global/node_modules/.bin:/home/oscar/.pyenv/shims:/home/oscar/.pyenv/bin:/home/oscar/.poetry/bin:/usr/local/lib/nodejs/node-v16.10.0-linux-x64/bin:/home/oscar/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:~/installed_software/node_modules/yarn/bin"
 export PYENV_ROOT="/home/oscar/.pyenv"
+export PATH="/home/oscar/bin/go:/home/oscar/bin:/home/oscar/.yarn/bin:/home/oscar/.config/yarn/global/node_modules/.bin:/home/oscar/.poetry/bin:/usr/local/lib/nodejs/node-v16.10.0-linux-x64/bin:/home/oscar/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:~/installed_software/node_modules/yarn/bin"
 
 BLUE='\[\033[1;34m\]'
 COLOR_NONE='\[\e[0m\]'

@@ -133,3 +133,4 @@ assert_matches_expectation
 convert_bl_string_to_list
 signal_to_number
 package_info_value
+spellang

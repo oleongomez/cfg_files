@@ -35,6 +35,7 @@ vim.api.nvim_set_keymap("n", "<leader>k", ":m .-2<cr>==", { noremap = true })
 
 vim.api.nvim_set_keymap("v", "<leader>j", ":m '>+1<cr>gv=gv", { noremap = true })
 vim.api.nvim_set_keymap("v", "<leader>k", ":m '<-2<cr>gv=gv", { noremap = true })
+vim.g.python3_host_prog = '~/.venv/bin/python'
 
 --clipboard
 vim.opt.clipboard['unnamed'] = plus
@@ -54,7 +55,7 @@ require 'nvim-treesitter.configs'.setup {
     auto_install = true,
 
     -- List of parsers to ignore installing (for "all")
-    ignore_install = { "lua" },
+    ignore_install = {},
 
     highlight = {
         -- `false` will disable the whole extension
@@ -74,8 +75,10 @@ require 'nvim-treesitter.configs'.setup {
     },
 }
 
-require("telescope").setup { defaults = { file_ignore_patterns = { ".git", ".pylint_cache", ".mypy_cache",
-    ".pytest_cache", "__pycache__" } } }
+require("telescope").setup { defaults = {
+    file_ignore_patterns = { ".git", ".pylint_cache", ".mypy_cache",
+        ".pytest_cache", "__pycache__" }
+} }
 -- Telescope keybindings
 require("telescope").load_extension "file_browser"
 vim.api.nvim_set_keymap("n", "<leader>ff", ":Telescope find_files hidden=true<CR>", { noremap = true })
@@ -127,23 +130,6 @@ require('lualine').setup {
     inactive_winbar = {},
     extensions = {}
 }
-
-local disable_filetype = { "TelescopePrompt" }
-local disable_in_macro = false -- disable when recording or executing a macro
-local disable_in_visualblock = false -- disable when insert after visual block mode
-local ignored_next_char = [=[[%w%%%'%[%"%.]]=]
-local enable_moveright = true
-local enable_afterquote = true -- add bracket pairs after quote
-local enable_check_bracket_line = true --- check bracket in same line
-local enable_bracket_in_quote = true --
-local enable_abbr = false -- trigger abbreviation
-local break_undo = true -- switch for basic rule break undo sequence
-local check_ts = false
-local map_cr = true
-local map_bs = true -- map the <BS> key
-local map_c_h = false -- Map the <C-h> key to delete a pair
-local map_c_w = false -- map <c-w> to delete a pair if possible
-
 
 local vimspector_conf = require('vimspector_conf')
 vim.api.nvim_set_keymap("n", "<leader><F4>", '<cmd>lua require("vimspector_conf").generate_debug_profile()<CR>',

@@ -12,3 +12,7 @@ alias gitr2m='git pull --rebase origin main'
 alias gitr2mstr='git pull --rebase origin master'
 # git push force
 alias gitpf='git push --force'
+#git add modified
+alias gitau='git add -u'
+#nvim with python support
+alias pynvim='source ~/.venv/bin/activate; nvim'

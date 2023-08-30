@@ -211,11 +211,11 @@ bar {
 }
 exec picom
 exec --no-startup-id nitrogen --restore &
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec terminator
 exec --no-startup-id dunst
 # default gaps
-gaps inner 5
-gaps outer 5
+gaps inner 3
+gaps outer 3
 
 # gaps
 set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft

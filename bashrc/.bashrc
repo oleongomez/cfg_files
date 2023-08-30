@@ -111,21 +111,14 @@ if ! shopt -oq posix; then
   fi
 fi
 #export GREP_OPTIONS='--color=auto'
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 export PS1="\[\033[1;33m\]\$(parse_git_branch)\n\[\033[32m\][\w]\[\033[00m\] $ "
 
 export PATH="$PATH:/home/oscar/installed_software/protoc-3.14.0-linux-x86_64/bin"
-export NDDSHOME=/home/oscar/installed_software/rti_connext_dds-6.0.1
 
 . "$HOME/.cargo/env"
 
@@ -145,4 +138,20 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 setxkbmap -layout us -option caps:escape
-#export LIBGL_ALWAYS_SOFTWARE=1
+function nvimvenv {
+  if [[ -e "$VIRTUAL_ENV" && -f "$VIRTUAL_ENV/bin/activate" ]]; then
+    source "$VIRTUAL_ENV/bin/activate"
+    command nvim "$@"
+    deactivate
+  else
+    command nvim "$@"
+  fi
+}
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+DEBEMAIL="ride_team@rivian.com"
+DEBFULLNAME="RiDE Team"
+export DEBEMAIL DEBFULLNAME

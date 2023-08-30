@@ -35,9 +35,11 @@ cmp.setup({
         end,
     },
     window = {
-        completion = { winhightligth = "Normal:Pmenu, FloatBorder:Pmenu, Search:None",
+        completion = {
+            winhightligth = "Normal:Pmenu, FloatBorder:Pmenu, Search:None",
             col_offset = 3,
-            side_padding = 0 },
+            side_padding = 0
+        },
         documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
@@ -105,8 +107,6 @@ lsp_signature.setup {
         border = "double",
     },
     floating_window_above_cur_line = true,
-    floating_window_off_x = 10,
-    floating_window_off_y = 10,
     hint_prefix = "☛  "
 }
 
@@ -130,10 +130,10 @@ local custom_attach = function()
     vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
     vim.keymap.set('v', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space><F3>', '<cmd>lua vim.lsp.buf.format({timeout_ms = 10000})<CR>', bufopts)
-    vim.keymap.set('v', '<space><F2>', '<cmd>lua vim.lsp.buf.format({timeout_ms = 10000})<CR>', bufopts)
+    vim.keymap.set('n', '<space><F3>', vim.lsp.buf.format, bufopts)
+    vim.keymap.set('v', '<space><F2>', vim.lsp.buf.format, bufopts)
     -- require('highlighting').setup(vim.lsp.get_active_clients()[1].server_capabilities)
-    vim.o.updaterime = 50
+    vim.o.updatetime = 500
     require('diagnostic_float').init()
 end
 
@@ -144,7 +144,7 @@ for type, icon in pairs(signs) do
 end
 
 lsp.pylsp.setup { on_attach = custom_attach,
-    cmd = { "pylsp", "-v", "--log-file", "/tmp/nvim-pylsp.log" },
+    cmd = { "pylsp", "-vvv", "--log-file", "/tmp/nvim-pylsp.log" },
     capabilities = capabilities,
     flags = flags,
     settings = {
@@ -154,10 +154,9 @@ lsp.pylsp.setup { on_attach = custom_attach,
                 pycodestyle = { maxLineLength = 100, enabled = false },
                 pylint = { enabled = false },
                 pylsp_mypy = { enabled = true, live_mode = true, strict = true },
-                yapf = { enabled = true },
-                ruff = {enabled = true, lineLength = 100, config = "/home/oscar/ruff.toml"},
-                rope_autoimport = {enabled = true}
-
+                yapf = { enabled = true,  },
+                ruff = { enabled = true, lineLength = 100, config = "/home/oscar/ruff.toml" },
+                rope_autoimport = { enabled = true }
             }
         }
     }
@@ -197,7 +196,8 @@ lsp.tsserver.setup({
     cmd = { "typescript-language-server", "--stdio" },
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     init_options = { hostInfo = "neovim" },
-    root_dir = function() return vim.loop.cwd()
+    root_dir = function()
+        return vim.loop.cwd()
     end
 })
 
@@ -234,7 +234,7 @@ lsp.html.setup {
 
 local status, null_ls = pcall(require, "null-ls")
 if (not status) then return end
-null_ls.register( { sources = { null_ls.builtins.formatting.prettierd } })
+null_ls.register({ sources = { null_ls.builtins.formatting.prettierd } })
 local status, prettier = pcall(require, "prettierd")
 if (not status) then return end
 

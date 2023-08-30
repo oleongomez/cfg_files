@@ -50,7 +50,7 @@ function M.setup()
                     require("config.vimspector").setup()
                 end,
             }
-            use 'wbthomason/packer.nvim' -- Package manager
+            use 'wbthomason/packer.nvim'    -- Package manager
             use { 'neovim/nvim-lspconfig' } -- Configurations for Nvim LSP
             use { 'oleongomez/vim-commenter' }
             use { 'tpope/vim-surround' }
@@ -73,22 +73,23 @@ function M.setup()
             }
             use {
                 "windwp/nvim-autopairs",
-                config = function() require("nvim-autopairs").setup({
+                config = function()
+                    require("nvim-autopairs").setup({
                         disable_filetype = { "TelescopePrompt" },
-                        disable_in_macro = false, -- disable when recording or executing a macro,
+                        disable_in_macro = false,       -- disable when recording or executing a macro,
                         disable_in_visualblock = false, -- disable when insert after visual block mode,
                         ignored_next_char = [=[[%w%%%'%[%"%.]]=],
                         enable_moveright = true,
-                        enable_afterquote = true, -- add bracket pairs after quote,
+                        enable_afterquote = true,         -- add bracket pairs after quote,
                         enable_check_bracket_line = true, --- check bracket in same line,
-                        enable_bracket_in_quote = true, --,
-                        enable_abbr = false, -- trigger abbreviation,
-                        break_undo = true, -- switch for basic rule break undo sequence,
+                        enable_bracket_in_quote = true,   --,
+                        enable_abbr = false,              -- trigger abbreviation,
+                        break_undo = true,                -- switch for basic rule break undo sequence,
                         check_ts = false,
                         map_cr = true,
-                        map_bs = true, -- map the <BS> key,
+                        map_bs = true,   -- map the <BS> key,
                         map_c_h = false, -- Map the <C-h> key to delete a pair,
-                        map_c_w = false -- map <c-w> to delete a pair if possible,
+                        map_c_w = false  -- map <c-w> to delete a pair if possible,
                     })
                 end
             }
@@ -98,37 +99,6 @@ function M.setup()
             use 'shaunsingh/nord.nvim'
             use { "nvim-telescope/telescope-file-browser.nvim" }
             use { "f-person/git-blame.nvim" }
-            use {
-                "startup-nvim/startup.nvim",
-                config = function()
-                    require("startup").setup{
-                        theme = "evil",
-  options = {
-      mapping_keys = true, -- display mapping (e.g. <leader>ff)
-
-      -- if < 0 fraction of screen width
-      -- if > 0 numbers of column
-      cursor_column = 0.5,
-
-      empty_lines_between_mappings = true, -- add an empty line between mapping/commands
-      disable_statuslines = true, -- disable status-, buffer- and tablines
-      paddings = {1,2}, -- amount of empty lines before each section (must be equal to amount of sections)
-  },
-  mappings = {
-    execute_command = "<CR>",
-    open_file = "o",
-    open_file_split = "<c-o>",
-    open_section = "<TAB>",
-    open_help = "?",
-  },
-  colors = {
-    background = "#1f2227",
-    folded_section = "#56b6c2", -- the color of folded sections
-      -- this can also be changed with the `StartupFoldedSection` highlight group
-  },
-}
-                end,
-            }
         end)
 
         if packer_bootstrap then
