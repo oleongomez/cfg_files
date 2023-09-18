@@ -21,3 +21,6 @@ alias gitcm='git commit -m'
 
 #nvim with python support
 alias pynvim='source ~/.venv/bin/activate; nvim'
+
+#yapf with user style
+alias yapf='yapf --style="$HOME/.config/yapf/style"'
