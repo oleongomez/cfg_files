@@ -59,9 +59,7 @@ function M.setup()
             use { 'hrsh7th/cmp-path' }
             use { 'hrsh7th/cmp-cmdline' }
             use { 'hrsh7th/nvim-cmp' }
-            use { 'hrsh7th/cmp-vsnip' }
-            --use { 'hrsh7th/vim-vsnip' }
-            --use { 'hrsh7th/vim-vsnip-integ' }
+            use { 'saadparwaiz1/cmp_luasnip' }
             use { 'nvim-treesitter/nvim-treesitter',
                 run = function() require('nvim-treesitter.install').update({ with_sync = true }) end }
             use { 'kyazdani42/nvim-web-devicons' }
@@ -93,7 +91,6 @@ function M.setup()
                     })
                 end
             }
-            use { 'saadparwaiz1/cmp_luasnip' }
             use "rafamadriz/friendly-snippets"
             use "onsails/lspkind-nvim"
             use 'shaunsingh/nord.nvim'

@@ -3,13 +3,14 @@ flake8
 flake8-polyfill
 isort
 jedi
-mccabe
+jedi==0.17.2
+mccabe==0.6.0
 mypy
 mypy-extensions
 neovim
 pycodestyle
 pycparser
-pyflakes
+pyflakes==2.2.0
 pylint-celery
 pylint-flask
 pylint-plugin-utils

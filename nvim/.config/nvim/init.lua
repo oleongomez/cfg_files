@@ -36,6 +36,16 @@ vim.api.nvim_set_keymap("n", "<leader>k", ":m .-2<cr>==", { noremap = true })
 vim.api.nvim_set_keymap("v", "<leader>j", ":m '>+1<cr>gv=gv", { noremap = true })
 vim.api.nvim_set_keymap("v", "<leader>k", ":m '<-2<cr>gv=gv", { noremap = true })
 vim.g.python3_host_prog = '~/.venv/bin/python'
+local ls = require('luasnip')
+vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })
+
+vim.keymap.set({ "i", "s" }, "<C-E>", function()
+    if ls.choice_active() then
+        ls.change_choice(1)
+    end
+end, { silent = true })
 
 --clipboard
 vim.opt.clipboard['unnamed'] = plus
@@ -45,6 +55,7 @@ vim.cmd "colorscheme nord"
 
 -- tree-sitter modules
 require 'nvim-treesitter.configs'.setup {
+    modules = {},
     -- A list of parser names, or "all"
     ensure_installed = { "c", "rust", "python", "jsonnet", "yaml", "go", "bash", "cpp", "css", "javascript", "typescript" },
 
@@ -76,8 +87,9 @@ require 'nvim-treesitter.configs'.setup {
 }
 
 require("telescope").setup { defaults = {
-    file_ignore_patterns = { ".git", ".pylint_cache", ".mypy_cache",
-        ".pytest_cache", "__pycache__" }
+    file_ignore_patterns = { ".git/", ".pylint_cache", ".mypy_cache",
+        ".pytest_cache", "__pycache__", "node_modules/", ".cache", "%.o", "%.a", "%.out", "%.class",
+        "%.pdf", "%.mkv", "%.mp4", "%.zip" }
 } }
 -- Telescope keybindings
 require("telescope").load_extension "file_browser"

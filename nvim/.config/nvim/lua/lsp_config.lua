@@ -15,10 +15,12 @@ cmp.setup({
                 local word = entry:get_insert_text()
                 if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
                     word = vim.lsp.util.parse_snippet(word)
+                    print('asdfasdf')
                 end
                 word = str.oneline(word)
                 if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
                     word = word .. " ..."
+                    print('qwerqwer')
                 end
                 vim_item.abbr = word
                 return vim_item
@@ -30,7 +32,6 @@ cmp.setup({
     },
     snippet = {
         expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
             require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
@@ -51,7 +52,6 @@ cmp.setup({
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        -- { name = 'vsnip' }, -- For vsnip users.
         { name = 'luasnip', option = { show_autosnippets = true } }, -- For luasnip users.
         { name = 'buffer' }
     }),
@@ -111,7 +111,7 @@ lsp_signature.setup {
 }
 
 local custom_attach = function()
-    vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    -- vim.api.nvim_buf_set_option(vim.api.nvim_get_current_buf(), 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = vim.api.nvim_get_current_buf() }
@@ -144,23 +144,28 @@ for type, icon in pairs(signs) do
 end
 
 lsp.pylsp.setup { on_attach = custom_attach,
-    cmd = { "pylsp", "-vvv", "--log-file", "/tmp/nvim-pylsp.log" },
+    cmd = { "pylsp", "-vvvv", "--log-file", "/tmp/nvim-pylsp.log" },
     capabilities = capabilities,
-    flags = flags,
-    settings = {
-        pylsp = {
-            plugins = {
-                autopep8 = { enabled = false },
-                pycodestyle = { maxLineLength = 100, enabled = false },
-                pylint = { enabled = false },
-                pylsp_mypy = { enabled = true, live_mode = true, strict = true },
-                yapf = { enabled = true,  },
-                ruff = { enabled = true, lineLength = 100, config = "/home/oscar/ruff.toml" },
-                rope_autoimport = { enabled = true }
-            }
-        }
-    }
-}
+   flags = flags,
+  settings = {
+     pylsp = {
+        plugins = {
+           autopep8 = { enabled = false },
+          pycodestyle = { maxLineLength = 100, enabled = false },
+         pylint = { enabled = false },
+        pylsp_mypy = { enabled = true, live_mode = true, strict = true},
+       yapf = { enabled = true, },
+      ruff = { enabled = true, lineLength = 100, config = "/home/oscar/ruff.toml" },
+     rope_autoimport = { enabled = true }
+ }
+ }
+  }
+ }
+
+-- lsp.pyright.setup {
+--    on_attach = custom_attach,
+--    capabilities = capabilities,
+--    flags = flags }
 
 lsp.lua_ls.setup {
     on_attach = custom_attach,
@@ -204,7 +209,7 @@ lsp.tsserver.setup({
 
 lsp.clangd.setup({
     on_attach = custom_attach,
-    cmd = { "clangd-15" }
+    cmd = { "clang-15" }
 })
 
 lsp.gopls.setup({
@@ -235,8 +240,8 @@ lsp.html.setup {
 local status, null_ls = pcall(require, "null-ls")
 if (not status) then return end
 null_ls.register({ sources = { null_ls.builtins.formatting.prettierd } })
-local status, prettier = pcall(require, "prettierd")
-if (not status) then return end
+local _status, prettier = pcall(require, "prettierd")
+if (not _status) then return end
 
 prettier.setup({
     bin = 'prettierd',
@@ -252,3 +257,4 @@ prettier.setup({
     }
 
 })
+vim.lsp.set_log_level("debug")
