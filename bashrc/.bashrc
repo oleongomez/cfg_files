@@ -139,7 +139,7 @@ export NVM_DIR="$HOME/.nvm"
 
 setxkbmap -layout us -option caps:escape
 function nvimvenv {
-  if [[ -e "$VIRTUAL_ENV" && -f "$VIRTUAL_ENV/bin/activate" ]]; then
+     if [[ -e "$VIRTUAL_ENV" && -f "$VIRTUAL_ENV/bin/activate" ]]; then
     source "$VIRTUAL_ENV/bin/activate"
     command nvim "$@"
     deactivate
@@ -148,10 +148,17 @@ function nvimvenv {
   fi
 }
 
+alias nvim=nvimvenv
+
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv virtualenv-init -)"
 DEBEMAIL="ride_team@rivian.com"
 DEBFULLNAME="RiDE Team"
 export DEBEMAIL DEBFULLNAME
+
+call_alacritty(){
+ alacritty -o 'debug.renderer="gles2_pure"' &
+}
+source /home/oscar/installed_software/alacritty/extra/completions/alacritty.bash

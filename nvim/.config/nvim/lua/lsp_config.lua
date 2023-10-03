@@ -173,7 +173,9 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-lsp.pylsp.setup { on_attach = custom_attach,
+lsp.pylsp.setup {
+    single_file_support = false,
+    on_attach = custom_attach,
     cmd = { "pylsp", "-vvvv", "--log-file", "/tmp/nvim-pylsp.log" },
     capabilities = capabilities,
     flags = flags,

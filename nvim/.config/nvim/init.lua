@@ -35,7 +35,7 @@ vim.api.nvim_set_keymap("n", "<leader>k", ":m .-2<cr>==", { noremap = true })
 
 vim.api.nvim_set_keymap("v", "<leader>j", ":m '>+1<cr>gv=gv", { noremap = true })
 vim.api.nvim_set_keymap("v", "<leader>k", ":m '<-2<cr>gv=gv", { noremap = true })
-vim.g.python3_host_prog = '~/.venv/bin/python'
+--vim.g.python3_host_prog = '~/.pyenv/shims/python'
 local ls = require('luasnip')
 vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
 vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
