@@ -1,28 +1,28 @@
 -- vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
-local function tprint (tbl, indent)
-  if not indent then indent = 0 end
-  local toprint = string.rep(" ", indent) .. "{\r\n"
-  indent = indent + 2 
-  for k, v in pairs(tbl) do
-    toprint = toprint .. string.rep(" ", indent)
-    if (type(k) == "number") then
-      toprint = toprint .. "[" .. k .. "] = "
-    elseif (type(k) == "string") then
-      toprint = toprint  .. k ..  "= "   
+local function tprint(tbl, indent)
+    if not indent then indent = 0 end
+    local toprint = string.rep(" ", indent) .. "{\r\n"
+    indent = indent + 2
+    for k, v in pairs(tbl) do
+        toprint = toprint .. string.rep(" ", indent)
+        if (type(k) == "number") then
+            toprint = toprint .. "[" .. k .. "] = "
+        elseif (type(k) == "string") then
+            toprint = toprint .. k .. "= "
+        end
+        if (type(v) == "number") then
+            toprint = toprint .. v .. ",\r\n"
+        elseif (type(v) == "string") then
+            toprint = toprint .. "\"" .. v .. "\",\r\n"
+        elseif (type(v) == "table") then
+            toprint = toprint .. tprint(v, indent + 2) .. ",\r\n"
+        else
+            toprint = toprint .. "\"" .. tostring(v) .. "\",\r\n"
+        end
     end
-    if (type(v) == "number") then
-      toprint = toprint .. v .. ",\r\n"
-    elseif (type(v) == "string") then
-      toprint = toprint .. "\"" .. v .. "\",\r\n"
-    elseif (type(v) == "table") then
-      toprint = toprint .. tprint(v, indent + 2) .. ",\r\n"
-    else
-      toprint = toprint .. "\"" .. tostring(v) .. "\",\r\n"
-    end
-  end
-  toprint = toprint .. string.rep(" ", indent-2) .. "}"
-  return toprint
+    toprint = toprint .. string.rep(" ", indent - 2) .. "}"
+    return toprint
 end
 
 local lspkind = require('lspkind')
@@ -35,28 +35,28 @@ cmp.setup({
     completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
     with_text = false,
     --    experimental = { native_menu = false, ghost_text = false },
-        formatting = {
-            format = lspkind.cmp_format({
-                before = function(entry, vim_item)
-                    local word = entry:get_insert_text()
-                     -- print('word:', word)
-                    -- print(type(entry))
-                    -- tprint(entry.completion_item,2)
-                    -- print('type:',types.lsp.InsertTextFormat.Snippet)
-                    if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
-                        word = vim.lsp.util.parse_snippet(word)
-                       -- print('asdfasdf')
-                    end
-                    word = str.oneline(word)
-                    if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
-                        word = word .. " ..."
-                       -- print('qwerqwer')
-                    end
-                   vim_item.abbr = word
-                    return vim_item
+    formatting = {
+        format = lspkind.cmp_format({
+            before = function(entry, vim_item)
+                local word = entry:get_insert_text()
+                -- print('word:', word)
+                -- print(type(entry))
+                -- tprint(entry.completion_item,2)
+                -- print('type:',types.lsp.InsertTextFormat.Snippet)
+                if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
+                    word = vim.lsp.util.parse_snippet(word)
+                    -- print('asdfasdf')
                 end
-            })
-        },
+                word = str.oneline(word)
+                if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
+                    word = word .. " ..."
+                    -- print('qwerqwer')
+                end
+                vim_item.abbr = word
+                return vim_item
+            end
+        })
+    },
     view = {
         entries = { name = 'custom', selection_order = 'near_cursor' }
     },
@@ -289,4 +289,9 @@ prettier.setup({
     }
 
 })
-vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level("debug")
+require('gitlab').setup({
+    statusline = {
+        enabled = true
+    }
+})
