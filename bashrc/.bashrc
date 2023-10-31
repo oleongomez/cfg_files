@@ -118,7 +118,6 @@ parse_git_branch() {
 }
 export PS1="\[\033[1;33m\]\$(parse_git_branch)\n\[\033[32m\][\w]\[\033[00m\] $ "
 
-export PATH="$PATH:/home/oscar/installed_software/protoc-3.14.0-linux-x86_64/bin"
 
 . "$HOME/.cargo/env"
 
@@ -126,12 +125,9 @@ export PATH=~/bin:$PATH
 export PATH=~/bin/git:$PATH
 export GOPATH=~/go
 export PATH=$PATH:$GOPATH/bin
-export WORKSPACE=/home/oscar/src/sw/firmware
 eval "$(direnv hook bash)"
 alias luamake=/luamake
 export PATH=~/installed_software/lua-language-server/bin:$PATH
-fortune
-echo "I am fully activated and ready to go, sir"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -154,11 +150,14 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-DEBEMAIL="ride_team@rivian.com"
-DEBFULLNAME="RiDE Team"
-export DEBEMAIL DEBFULLNAME
 
 call_alacritty(){
  alacritty -o 'debug.renderer="gles2_pure"' &
 }
-source /home/oscar/installed_software/alacritty/extra/completions/alacritty.bash
+source $HOME/installed_software/alacritty/extra/completions/alacritty.bash
+
+export PROTOC_INSTALL_DIR=/usr/local/include/google
+. $HOME/to_export.bash
+
+fortune
+echo "I am fully activated and ready to go, sir"

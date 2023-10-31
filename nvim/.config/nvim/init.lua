@@ -41,6 +41,18 @@ vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
 vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
 vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })
 
+
+-- Copy to clipboard
+vim.api.nvim_set_keymap("n", "<leader>y", '"+y', { noremap = true })
+vim.api.nvim_set_keymap("v", "<leader>y", '"+y', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>yy", '"+yy', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>Y", '"+yg_', { noremap = true })
+-- Paste to clipboard
+vim.api.nvim_set_keymap("n", "<leader>p", '"+p', { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>P", '"+P', { noremap = true })
+vim.api.nvim_set_keymap("v", "<leader>p", '"+p', { noremap = true })
+vim.api.nvim_set_keymap("v", "<leader>P", '"+P', { noremap = true })
+
 vim.keymap.set({ "i", "s" }, "<C-E>", function()
     if ls.choice_active() then
         ls.change_choice(1)
@@ -48,7 +60,8 @@ vim.keymap.set({ "i", "s" }, "<C-E>", function()
 end, { silent = true })
 
 --clipboard
-vim.opt.clipboard['unnamed'] = plus
+--vim.api.nvim_set_option("clipboard", "unnamed")
+vim.opt_global.clipboard = "unnamed"
 
 -- Color scheme
 vim.cmd "colorscheme nord"

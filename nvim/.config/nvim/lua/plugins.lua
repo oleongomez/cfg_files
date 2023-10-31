@@ -96,6 +96,9 @@ function M.setup()
             use 'shaunsingh/nord.nvim'
             use { "nvim-telescope/telescope-file-browser.nvim" }
             use { "f-person/git-blame.nvim" }
+            use {
+                "https://gitlab.com/gitlab-org/editor-extensions/gitlab.vim.git"
+            }
         end)
 
         if packer_bootstrap then
