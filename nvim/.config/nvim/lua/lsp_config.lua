@@ -1,4 +1,4 @@
--- vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
 local function tprint(tbl, indent)
     if not indent then indent = 0 end
@@ -160,8 +160,8 @@ local custom_attach = function()
     vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
     vim.keymap.set('v', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space><F3>', vim.lsp.buf.format, bufopts)
-    vim.keymap.set('v', '<space><F2>', vim.lsp.buf.format, bufopts)
+    vim.keymap.set('n', '<space><F3>', '<cmd>lua vim.lsp.buf.format({timeout_ms = 100000})<CR>', bufopts)
+    vim.keymap.set('v', '<space><F2>', '<cmd>lua vim.lsp.buf.format({timeout_ms = 100000})<CR>', bufopts)
     -- require('highlighting').setup(vim.lsp.get_active_clients()[1].server_capabilities)
     vim.o.updatetime = 500
     require('diagnostic_float').init()
@@ -289,7 +289,7 @@ prettier.setup({
     }
 
 })
--- vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("debug")
 require('gitlab').setup({
     statusline = {
         enabled = true
