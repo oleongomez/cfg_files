@@ -172,3 +172,9 @@ vim.api.nvim_set_keymap("n", "<leader>vx", '<cmd>VimspectorReset<cr>', { noremap
 vim.api.nvim_set_keymap("n", "<leader>vH", '<cmd>lua require("vimspector_conf").toogle_human_mode()<CR>',
     { noremap = true })
 require("luasnip.loaders.from_vscode").lazy_load()
+vim.lsp.set_log_level('debug')
+require('gitlab').setup({
+    code_suggestions = {
+        offset_encoding = 'utf-16'
+    }
+})

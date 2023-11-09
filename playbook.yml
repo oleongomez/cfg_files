@@ -1,0 +1,69 @@
+---
+- name: RiDE playbook
+  vars:
+    home:
+  become: yes
+  hosts: all
+  tasks:
+    - name: Upgrade apt packages
+      apt:
+        force_apt_get: yes
+        upgrade: dist
+    - name: pyenv | check if pyenv is installed
+      command: test -x {{ home }}/.pyenv/bin/pyenv || echo "FAILED!" 1>&2
+      register: pyenv_present
+      failed_when: "'FAILED!' in pyenv_present.stderr"
+      ignore_errors: no
+    - name: pyenv | install pyenv dependencies
+      become: yes
+      apt:
+        pkg:
+          - build-essential
+          - libssl-dev
+          - zlib1g-dev
+          - libbz2-dev
+          - libreadline-dev
+          - libsqlite3-dev
+          - curl
+          - libncursesw5-dev
+          - xz-utils
+          - tk-dev
+          - libxml2-dev
+          - libxmlsec1-dev
+          - libffi-dev
+          - liblzma-dev
+          - sway
+          - tmux
+          - fd-find
+    - name: create user bin
+      command: cd; mkdir bin/
+    - name: install ripgrep
+      command: curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb; ln -s $(which fdfind) ~/bin
+    - name: pyenv | install pyenv
+      ansible.builtin.git:
+        repo: 'https://github.com/pyenv/pyenv.git'
+        dest: "{{ home }}/.pyenv"
+      ignore_errors: yes
+    - name: pyenv | install pyenv virtualenv
+      ansible.builtin.git:
+        repo: 'https://github.com/pyenv/pyenv-virtualenv.git'
+        dest: "{{ home }}/.pyenv/plugins/pyenv-virtualenv"
+      ignore_errors: yes
+    - name: define pyenv_root
+      shell: echo 'export PYENV_ROOT="$HOME/.pyenv"' >> "{{ home }}/.bash_profile"
+    - name: add pyenv root to PATH
+      shell: echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> "{{ home }}/.bash_profile"
+    - name: add pyenv init for shims and autocompletion
+      shell: echo 'eval "$(pyenv init -)"' >> "{{ home }}/.bash_profile"
+    - name: add pyenv-virtualenv init
+      shell: echo 'eval "$(pyenv virtualenv-init -)"' >> "{{ home }}/.bash_profile"
+    - name: install python 3.12
+      shell: exec $SHELL &&  env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.12.0 -vvv
+      ignore_errors: no
+    - name: install python 3.7.7
+      shell: exec $SHELL && env PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.7.14 -vvv
+      ignore_errors: no
+    - name: create ride-engine virtual environment
+      shell: exec $SHELL && pyenv virtualenv 3.7.14 ride-engine
+    - name: global python
+      command: pyenv global 3.12.0

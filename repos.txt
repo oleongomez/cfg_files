@@ -1,0 +1,9 @@
+https://github.com/alacritty/alacritty.git
+https://github.com/ronniedroid/getnf.git
+https://github.com/arl/gitmux.git
+https://github.com/oleongomez/i3blocks_scripts.git
+https://github.com/LuaLS/lua-language-server.git
+https://github.com/neovim/neovim.git
+https://github.com/GothenburgBitFactory/taskwarrior.git
+https://github.com/tmux-plugins/tmux-resurrect.git
+https://github.com/tmux-plugins/tpm

@@ -32,25 +32,19 @@ local types = require("cmp.types")
 local str = require("cmp.utils.str")
 local cmp = require('cmp')
 cmp.setup({
-    completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
+    completion = { completeopt = "menu,menuone,noinsert", keyword_length = 2 },
     with_text = false,
     --    experimental = { native_menu = false, ghost_text = false },
     formatting = {
         format = lspkind.cmp_format({
             before = function(entry, vim_item)
                 local word = entry:get_insert_text()
-                -- print('word:', word)
-                -- print(type(entry))
-                -- tprint(entry.completion_item,2)
-                -- print('type:',types.lsp.InsertTextFormat.Snippet)
                 if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
                     word = vim.lsp.util.parse_snippet(word)
-                    -- print('asdfasdf')
                 end
                 word = str.oneline(word)
                 if entry.completion_item.insertTextFormat == types.lsp.InsertTextFormat.Snippet then
                     word = word .. " ..."
-                    -- print('qwerqwer')
                 end
                 vim_item.abbr = word
                 return vim_item
@@ -69,7 +63,6 @@ cmp.setup({
         completion = {
             winhightligth = "Normal:Pmenu, FloatBorder:Pmenu, Search:None",
             col_offset = 3,
-            side_padding = 0
         },
         documentation = cmp.config.window.bordered(),
     },
@@ -163,11 +156,11 @@ local custom_attach = function()
     vim.keymap.set('n', '<space><F3>', '<cmd>lua vim.lsp.buf.format({timeout_ms = 100000})<CR>', bufopts)
     vim.keymap.set('v', '<space><F2>', '<cmd>lua vim.lsp.buf.format({timeout_ms = 100000})<CR>', bufopts)
     -- require('highlighting').setup(vim.lsp.get_active_clients()[1].server_capabilities)
-    vim.o.updatetime = 500
+    vim.o.updatetime = 1000
     require('diagnostic_float').init()
 end
 
-local signs = { Error = "✘", Warn = "⚠ ", Hint = "☛ ", Info = "🛈 " }
+local signs = { Error = "✘", Warn = "⚠ ", Hint = "☛ ", Info = " " }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -188,7 +181,7 @@ lsp.pylsp.setup {
                 pylsp_mypy = { enabled = true, live_mode = true, strict = true },
                 yapf = { enabled = true, },
                 ruff = { enabled = true, lineLength = 100, config = "/home/oscar/ruff.toml" },
-                rope_autoimport = { enabled = true }
+                rope_autoimport = { enabled = false, completions = {enabled = false}, code_actions = {enabled = true}, memory = true },
             }
         }
     }
@@ -288,10 +281,4 @@ prettier.setup({
         "less",
     }
 
-})
-vim.lsp.set_log_level("debug")
-require('gitlab').setup({
-    statusline = {
-        enabled = true
-    }
 })
