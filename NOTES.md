@@ -139,3 +139,6 @@ lualine
 nvim-autopairs
 telescope-file-browser
 Telescope 
+## Golang
+install shadow linter
+go install golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@latest
