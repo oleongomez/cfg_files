@@ -153,6 +153,7 @@ eval "$(pyenv virtualenv-init -)"
 
 call_alacritty(){
  alacritty -o 'debug.renderer="gles2_pure"' &
+ # alacritty &
 }
 source $HOME/installed_software/alacritty/extra/completions/alacritty.bash
 

@@ -61,7 +61,7 @@ end, { silent = true })
 
 --clipboard
 --vim.api.nvim_set_option("clipboard", "unnamed")
-vim.opt_global.clipboard = "unnamed"
+vim.opt_global.clipboard = "unnamedplus"
 
 -- Color scheme
 vim.cmd "colorscheme nord"
